@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		48AF6BF113C8F6510062B769 /* slideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48AF6BF013C8F6510062B769 /* slideViewController.m */; };
+		48AF6BF413C8F6720062B769 /* viewPlaceHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 48AF6BF313C8F6720062B769 /* viewPlaceHolder.m */; };
 		C1C2C01813C8C48C00CD103D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1C2C01713C8C48C00CD103D /* UIKit.framework */; };
 		C1C2C01A13C8C48C00CD103D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1C2C01913C8C48C00CD103D /* Foundation.framework */; };
 		C1C2C01C13C8C48C00CD103D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1C2C01B13C8C48C00CD103D /* CoreGraphics.framework */; };
@@ -22,6 +24,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		48AF6BEF13C8F6510062B769 /* slideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = slideViewController.h; sourceTree = "<group>"; };
+		48AF6BF013C8F6510062B769 /* slideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = slideViewController.m; sourceTree = "<group>"; };
+		48AF6BF213C8F6720062B769 /* viewPlaceHolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = viewPlaceHolder.h; sourceTree = "<group>"; };
+		48AF6BF313C8F6720062B769 /* viewPlaceHolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = viewPlaceHolder.m; sourceTree = "<group>"; };
 		C1C2C01313C8C48C00CD103D /* gather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = gather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1C2C01713C8C48C00CD103D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C1C2C01913C8C48C00CD103D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -57,6 +63,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		48AF6BDF13C8DEC60062B769 /* UI Classes */ = {
+			isa = PBXGroup;
+			children = (
+				48AF6BEF13C8F6510062B769 /* slideViewController.h */,
+				48AF6BF013C8F6510062B769 /* slideViewController.m */,
+				48AF6BF213C8F6720062B769 /* viewPlaceHolder.h */,
+				48AF6BF313C8F6720062B769 /* viewPlaceHolder.m */,
+			);
+			name = "UI Classes";
+			sourceTree = "<group>";
+		};
 		C1C2C00813C8C48C00CD103D = {
 			isa = PBXGroup;
 			children = (
@@ -112,6 +129,7 @@
 		C1C2C02E13C8C48C00CD103D /* iPhone */ = {
 			isa = PBXGroup;
 			children = (
+				48AF6BDF13C8DEC60062B769 /* UI Classes */,
 				C1C2C02F13C8C48D00CD103D /* gatherAppDelegate_iPhone.h */,
 				C1C2C03013C8C48D00CD103D /* gatherAppDelegate_iPhone.m */,
 				C1C2C03213C8C48D00CD103D /* MainWindow_iPhone.xib */,
@@ -197,6 +215,8 @@
 				C1C2C02D13C8C48C00CD103D /* gather.xcdatamodeld in Sources */,
 				C1C2C03113C8C48D00CD103D /* gatherAppDelegate_iPhone.m in Sources */,
 				C1C2C03813C8C48D00CD103D /* gatherAppDelegate_iPad.m in Sources */,
+				48AF6BF113C8F6510062B769 /* slideViewController.m in Sources */,
+				48AF6BF413C8F6720062B769 /* viewPlaceHolder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -234,7 +254,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Hunter Bridges (57CLLPJ7F6)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
@@ -243,6 +263,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D871EDD5-2346-4F0C-B241-BD963B78FDD4";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -311,6 +332,7 @@
 				C1C2C04013C8C48D00CD103D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
