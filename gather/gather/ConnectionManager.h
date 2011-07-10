@@ -24,8 +24,9 @@ static NSString * kConnectionFailedNotification = @"ConnectionManager_connection
 + (ConnectionManager*) sharedInstance;
 
 - (void) resetHashIndex;
-- (NSUInteger) getHash;
+- (NSUInteger) genHash;
 
+- (BOOL) connectRequest:(NSMutableURLRequest *) req;
 - (void) updateStatusIndicator;
 
 @property (nonatomic, retain) NSMutableDictionary * openConnections;

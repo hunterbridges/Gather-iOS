@@ -1,5 +1,5 @@
 //
-//  gatherAppDelegate_iPhone.h
+//  NetworkingTestVC.h
 //  gather
 //
 //  Created by Hunter B on 7/9/11.
@@ -7,10 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "gatherAppDelegate.h"
-#import "NetworkingTestVC.h"
+#import "ConnectionManager.h"
 
-@interface gatherAppDelegate_iPhone : gatherAppDelegate {
+@interface NetworkingTestVC : UIViewController {
     
 }
 

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C1105FBE13C93B8B0061FEE2 /* NetworkingTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C1105FBC13C93B8B0061FEE2 /* NetworkingTestVC.m */; };
+		C1105FBF13C93B8B0061FEE2 /* NetworkingTestVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1105FBD13C93B8B0061FEE2 /* NetworkingTestVC.xib */; };
 		C11F0A5413C92012007B7633 /* ConnectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C11F0A5313C92011007B7633 /* ConnectionManager.m */; };
 		C11F0A5813C92377007B7633 /* IndexedURLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = C11F0A5713C92377007B7633 /* IndexedURLConnection.m */; };
 		C1C2C01813C8C48C00CD103D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1C2C01713C8C48C00CD103D /* UIKit.framework */; };
@@ -34,11 +36,12 @@
 		C1C2C07113C9164500CD103D /* SBJsonUTF8Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = C1C2C06413C9164500CD103D /* SBJsonUTF8Stream.m */; };
 		C1C2C07213C9164500CD103D /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = C1C2C06613C9164500CD103D /* SBJsonWriter.m */; };
 		C1C2C07513C9184400CD103D /* GatherAPIRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C1C2C07413C9184300CD103D /* GatherAPIRequest.m */; };
-		C1C2C07813C918B300CD103D /* APITest.m in Sources */ = {isa = PBXBuildFile; fileRef = C1C2C07713C918B300CD103D /* APITest.m */; };
-		C1C2C07E13C91C2500CD103D /* RequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C1C2C07D13C91C2500CD103D /* RequestManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C1105FBB13C93B8B0061FEE2 /* NetworkingTestVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NetworkingTestVC.h; path = iPhone/NetworkingTestVC.h; sourceTree = "<group>"; };
+		C1105FBC13C93B8B0061FEE2 /* NetworkingTestVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NetworkingTestVC.m; path = iPhone/NetworkingTestVC.m; sourceTree = "<group>"; };
+		C1105FBD13C93B8B0061FEE2 /* NetworkingTestVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NetworkingTestVC.xib; path = iPhone/NetworkingTestVC.xib; sourceTree = "<group>"; };
 		C11F0A5213C92011007B7633 /* ConnectionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionManager.h; sourceTree = "<group>"; };
 		C11F0A5313C92011007B7633 /* ConnectionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectionManager.m; sourceTree = "<group>"; };
 		C11F0A5613C92377007B7633 /* IndexedURLConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IndexedURLConnection.h; path = Common/IndexedURLConnection.h; sourceTree = "<group>"; };
@@ -88,10 +91,6 @@
 		C1C2C06613C9164500CD103D /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
 		C1C2C07313C9184300CD103D /* GatherAPIRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GatherAPIRequest.h; path = Common/GatherAPIRequest.h; sourceTree = "<group>"; };
 		C1C2C07413C9184300CD103D /* GatherAPIRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GatherAPIRequest.m; path = Common/GatherAPIRequest.m; sourceTree = "<group>"; };
-		C1C2C07613C918B300CD103D /* APITest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = APITest.h; path = Common/APITest.h; sourceTree = "<group>"; };
-		C1C2C07713C918B300CD103D /* APITest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = APITest.m; path = Common/APITest.m; sourceTree = "<group>"; };
-		C1C2C07C13C91C2500CD103D /* RequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestManager.h; sourceTree = "<group>"; };
-		C1C2C07D13C91C2500CD103D /* RequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +108,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C1105FB913C93B4A0061FEE2 /* UI Tests */ = {
+			isa = PBXGroup;
+			children = (
+				C1105FBB13C93B8B0061FEE2 /* NetworkingTestVC.h */,
+				C1105FBC13C93B8B0061FEE2 /* NetworkingTestVC.m */,
+				C1105FBD13C93B8B0061FEE2 /* NetworkingTestVC.xib */,
+			);
+			name = "UI Tests";
+			sourceTree = "<group>";
+		};
 		C1C2C00813C8C48C00CD103D = {
 			isa = PBXGroup;
 			children = (
@@ -165,6 +174,7 @@
 		C1C2C02E13C8C48C00CD103D /* iPhone */ = {
 			isa = PBXGroup;
 			children = (
+				C1105FB913C93B4A0061FEE2 /* UI Tests */,
 				C1C2C02F13C8C48D00CD103D /* gatherAppDelegate_iPhone.h */,
 				C1C2C03013C8C48D00CD103D /* gatherAppDelegate_iPhone.m */,
 				C1C2C03213C8C48D00CD103D /* MainWindow_iPhone.xib */,
@@ -196,10 +206,6 @@
 			children = (
 				C1C2C07313C9184300CD103D /* GatherAPIRequest.h */,
 				C1C2C07413C9184300CD103D /* GatherAPIRequest.m */,
-				C1C2C07613C918B300CD103D /* APITest.h */,
-				C1C2C07713C918B300CD103D /* APITest.m */,
-				C1C2C07C13C91C2500CD103D /* RequestManager.h */,
-				C1C2C07D13C91C2500CD103D /* RequestManager.m */,
 				C11F0A5213C92011007B7633 /* ConnectionManager.h */,
 				C11F0A5313C92011007B7633 /* ConnectionManager.m */,
 				C11F0A5613C92377007B7633 /* IndexedURLConnection.h */,
@@ -294,6 +300,7 @@
 				C1C2C02413C8C48C00CD103D /* InfoPlist.strings in Resources */,
 				C1C2C03413C8C48D00CD103D /* MainWindow_iPhone.xib in Resources */,
 				C1C2C03B13C8C48D00CD103D /* MainWindow_iPad.xib in Resources */,
+				C1105FBF13C93B8B0061FEE2 /* NetworkingTestVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,10 +329,9 @@
 				C1C2C07113C9164500CD103D /* SBJsonUTF8Stream.m in Sources */,
 				C1C2C07213C9164500CD103D /* SBJsonWriter.m in Sources */,
 				C1C2C07513C9184400CD103D /* GatherAPIRequest.m in Sources */,
-				C1C2C07813C918B300CD103D /* APITest.m in Sources */,
-				C1C2C07E13C91C2500CD103D /* RequestManager.m in Sources */,
 				C11F0A5413C92012007B7633 /* ConnectionManager.m in Sources */,
 				C11F0A5813C92377007B7633 /* IndexedURLConnection.m in Sources */,
+				C1105FBE13C93B8B0061FEE2 /* NetworkingTestVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

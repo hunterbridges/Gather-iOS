@@ -26,13 +26,31 @@
     return _hash;
 }
 
+- (void) setHash:(NSUInteger)newHash
+{
+    _hash = newHash;
+}
+
 - (BOOL) isEqual:(id)object
 {
     if ([object isMemberOfClass:[IndexedURLConnection class]])
     { 
         return [self hash] == [object hash];
     } else {
-        return nil;
+        return NO;
     }
+}
+
+- (id) copyWithZone:(NSZone *)zone
+{
+    IndexedURLConnection * copy = [[IndexedURLConnection allocWithZone:zone] init];
+    [copy setHash:[self hash]];
+    
+    return copy;
+}
+
+- (NSString *) hashString
+{
+    return [NSString stringWithFormat:@"%d", _hash];
 }
 @end

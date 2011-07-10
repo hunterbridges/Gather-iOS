@@ -14,5 +14,7 @@
 }
 
 - (id) initWithRequest:(NSURLRequest *)request hash:(NSUInteger)hash delegate:(id)delegate;
+- (void) setHash:(NSUInteger)newHash;
+- (NSString *) hashString;
 
 @end

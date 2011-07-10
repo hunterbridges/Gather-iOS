@@ -105,17 +105,19 @@ static ConnectionManager *_instance;
         [dict setObject:conn forKey:@"connection"];
         [dict setObject:data forKey:@"data"];
         
-        [openConnections setObject:dict forKey:conn];
+        [openConnections setObject:dict forKey:[conn hashString]];
         
         [self updateStatusIndicator];
+        
+        return YES;
     } else {
-        return nil;
+        return NO;
     }
 }
 
 - (void) connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
-	NSMutableDictionary * dict = [openConnections objectForKey:connection];
+	NSMutableDictionary * dict = [openConnections objectForKey:[connection hashString]];
     
     [dict setObject:response forKey:@"response"];
     [[NSNotificationCenter defaultCenter] postNotificationName:kConnectionResponseNotification object:dict];
@@ -123,32 +125,33 @@ static ConnectionManager *_instance;
 
 - (void) connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
-    NSMutableDictionary * dict = [openConnections objectForKey:connection];
+    NSMutableDictionary * dict = [openConnections objectForKey:[connection hashString]];
     
     [[dict objectForKey:@"data"] appendData:data];
 }
 
 - (void) connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
-    NSMutableDictionary * dict = [[[openConnections objectForKey:connection] retain] autorelease];
+    NSMutableDictionary * dict = [[openConnections objectForKey:[connection hashString]] retain];
     
-    [openConnections removeObjectForKey:connection];
+    [openConnections removeObjectForKey:[connection hashString]];
     
     [self updateStatusIndicator];
     
     [dict setObject:error forKey:@"error"];
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:kConnectionFinishedNotification object:dict];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kConnectionFailedNotification object:nil userInfo:dict];
 }
 
 - (void) connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    NSMutableDictionary * dict = [[[openConnections objectForKey:connection] retain] autorelease];
+    NSMutableDictionary * dict = [[openConnections objectForKey:[connection hashString]] retain];
     
-    [openConnections removeObjectForKey:connection];
+    NSLog(@"%d", [[dict objectForKey:@"connection"] hash]);
+    [openConnections removeObjectForKey:[connection hashString]];
     
     [self updateStatusIndicator];
-    [[NSNotificationCenter defaultCenter] postNotificationName:kConnectionFailedNotification object:dict];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kConnectionFinishedNotification object:nil userInfo:dict];
 }
 
 - (void) updateStatusIndicator
@@ -159,4 +162,5 @@ static ConnectionManager *_instance;
     
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:set];
 }
+
 @end

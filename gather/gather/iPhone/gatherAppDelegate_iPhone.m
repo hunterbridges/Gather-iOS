@@ -15,4 +15,13 @@
 	[super dealloc];
 }
 
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    // Override point for customization after application launch.
+    NetworkingTestVC * vc = [[NetworkingTestVC alloc] initWithNibName:@"NetworkingTestVC" bundle:nil];
+    
+    [self.window addSubview:vc.view];
+    return YES;
+}
+
 @end
