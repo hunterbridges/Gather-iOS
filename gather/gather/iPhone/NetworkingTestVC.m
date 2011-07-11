@@ -40,6 +40,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    
+    // BEGIN LOGIN REQUEST
     NSString * udid = [[[UIDevice currentDevice] uniqueIdentifier] stringByReplacingOccurrencesOfString:@"-" withString:@""];
     
     NSMutableDictionary * dict = [[[NSMutableDictionary alloc] init] autorelease];
@@ -49,6 +51,8 @@
     NSLog(@"%@", udid);
     
     [GatherAPI request:@"tokens" requestMethod:@"POST" requestData:dict];
+    //END LOGIN REQUEST
+    
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(connectionFinished:) name:kConnectionFinishedNotification object:nil];
 }

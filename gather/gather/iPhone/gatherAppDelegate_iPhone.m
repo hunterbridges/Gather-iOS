@@ -7,8 +7,8 @@
 //
 
 #import "gatherAppDelegate_iPhone.h"
+#import "LoginVC.h"
 
-#import "viewPlaceHolder.h"
 @implementation gatherAppDelegate_iPhone
 @synthesize slideView;
 - (void)dealloc
@@ -22,16 +22,9 @@
     slideView = [[slideViewController alloc] init];
     [self.window addSubview:slideView.view];
     
-    viewPlaceHolder *newPage = [[viewPlaceHolder alloc] init];
+    LoginVC *newPage = [[LoginVC alloc] init];
     [slideView addNewPage:newPage];
     
-    viewPlaceHolder *newPage2 = [[viewPlaceHolder alloc] init];
-    [slideView addNewPage:newPage2];
-    
-    viewPlaceHolder *newPage3 = [[viewPlaceHolder alloc] init];
-    [slideView addNewPage:newPage3];
-    
-    [slideView setScrollStop:2];
     return YES;
 }
 

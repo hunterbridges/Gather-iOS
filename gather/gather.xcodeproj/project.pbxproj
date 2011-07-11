@@ -39,6 +39,10 @@
 		C1EB5C3A13CB6D7100F156DB /* SBJsonUTF8Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = C1EB5C2D13CB6D7100F156DB /* SBJsonUTF8Stream.m */; };
 		C1EB5C3B13CB6D7100F156DB /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = C1EB5C2F13CB6D7100F156DB /* SBJsonWriter.m */; };
 		C1EB5C3E13CB6DB800F156DB /* SessionData.m in Sources */ = {isa = PBXBuildFile; fileRef = C1EB5C3D13CB6DB800F156DB /* SessionData.m */; };
+		C1EB5C4113CB70E500F156DB /* UniversLTStd-UltraCn.otf in Resources */ = {isa = PBXBuildFile; fileRef = C1EB5C4013CB70E500F156DB /* UniversLTStd-UltraCn.otf */; };
+		C1EB5C4613CB727A00F156DB /* LoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C1EB5C4413CB727A00F156DB /* LoginVC.m */; };
+		C1EB5C4713CB727A00F156DB /* LoginVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1EB5C4513CB727A00F156DB /* LoginVC.xib */; };
+		C1EB5C4A13CB79F500F156DB /* PhoneNumberFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = C1EB5C4913CB79F500F156DB /* PhoneNumberFormatter.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -100,6 +104,12 @@
 		C1EB5C2F13CB6D7100F156DB /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
 		C1EB5C3C13CB6DB800F156DB /* SessionData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SessionData.h; path = Common/SessionData.h; sourceTree = "<group>"; };
 		C1EB5C3D13CB6DB800F156DB /* SessionData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SessionData.m; path = Common/SessionData.m; sourceTree = "<group>"; };
+		C1EB5C4013CB70E500F156DB /* UniversLTStd-UltraCn.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UniversLTStd-UltraCn.otf"; sourceTree = "<group>"; };
+		C1EB5C4313CB727A00F156DB /* LoginVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginVC.h; path = iPhone/LoginVC.h; sourceTree = "<group>"; };
+		C1EB5C4413CB727A00F156DB /* LoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginVC.m; path = iPhone/LoginVC.m; sourceTree = "<group>"; };
+		C1EB5C4513CB727A00F156DB /* LoginVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoginVC.xib; path = iPhone/LoginVC.xib; sourceTree = "<group>"; };
+		C1EB5C4813CB79F500F156DB /* PhoneNumberFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhoneNumberFormatter.h; path = Common/PhoneNumberFormatter.h; sourceTree = "<group>"; };
+		C1EB5C4913CB79F500F156DB /* PhoneNumberFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PhoneNumberFormatter.m; path = Common/PhoneNumberFormatter.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +172,7 @@
 				C1C2C02813C8C48C00CD103D /* gatherAppDelegate.h */,
 				C1C2C02913C8C48C00CD103D /* gatherAppDelegate.m */,
 				C1C2C02B13C8C48C00CD103D /* gather.xcdatamodeld */,
+				C1EB5C3F13CB70E500F156DB /* Resources */,
 				C1EB58E113CB6B3900F156DB /* Common */,
 				C1C2C02E13C8C48C00CD103D /* iPhone */,
 				C1C2C03513C8C48D00CD103D /* iPad */,
@@ -184,6 +195,7 @@
 		C1C2C02E13C8C48C00CD103D /* iPhone */ = {
 			isa = PBXGroup;
 			children = (
+				C1EB5C4213CB725300F156DB /* VCs */,
 				C1EB58ED13CB6B7D00F156DB /* UI Tests */,
 				48AF6BDF13C8DEC60062B769 /* UI Classes */,
 				C1C2C02F13C8C48D00CD103D /* gatherAppDelegate_iPhone.h */,
@@ -208,6 +220,8 @@
 			children = (
 				C1EB5C1613CB6D7100F156DB /* SBJson */,
 				C1EB58E313CB6B4300F156DB /* Server */,
+				C1EB5C4813CB79F500F156DB /* PhoneNumberFormatter.h */,
+				C1EB5C4913CB79F500F156DB /* PhoneNumberFormatter.m */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -270,6 +284,24 @@
 			path = "../../json-framework/Classes";
 			sourceTree = "<group>";
 		};
+		C1EB5C3F13CB70E500F156DB /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C1EB5C4013CB70E500F156DB /* UniversLTStd-UltraCn.otf */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		C1EB5C4213CB725300F156DB /* VCs */ = {
+			isa = PBXGroup;
+			children = (
+				C1EB5C4313CB727A00F156DB /* LoginVC.h */,
+				C1EB5C4413CB727A00F156DB /* LoginVC.m */,
+				C1EB5C4513CB727A00F156DB /* LoginVC.xib */,
+			);
+			name = VCs;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -324,6 +356,8 @@
 				C1C2C03413C8C48D00CD103D /* MainWindow_iPhone.xib in Resources */,
 				C1C2C03B13C8C48D00CD103D /* MainWindow_iPad.xib in Resources */,
 				C1EB58F213CB6B9000F156DB /* NetworkingTestVC.xib in Resources */,
+				C1EB5C4113CB70E500F156DB /* UniversLTStd-UltraCn.otf in Resources */,
+				C1EB5C4713CB727A00F156DB /* LoginVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -358,6 +392,8 @@
 				C1EB5C3A13CB6D7100F156DB /* SBJsonUTF8Stream.m in Sources */,
 				C1EB5C3B13CB6D7100F156DB /* SBJsonWriter.m in Sources */,
 				C1EB5C3E13CB6DB800F156DB /* SessionData.m in Sources */,
+				C1EB5C4613CB727A00F156DB /* LoginVC.m in Sources */,
+				C1EB5C4A13CB79F500F156DB /* PhoneNumberFormatter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -430,6 +466,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Hunter Bridges (57CLLPJ7F6)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -437,6 +474,7 @@
 				HEADER_SEARCH_PATHS = "../json-framework/Classes";
 				INFOPLIST_FILE = "gather/gather-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "9C224CEF-9A2D-448F-9028-6B91BC81AB23";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -445,12 +483,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Hunter Bridges (57CLLPJ7F6)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "gather/gather-Prefix.pch";
 				HEADER_SEARCH_PATHS = "../json-framework/Classes";
 				INFOPLIST_FILE = "gather/gather-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "9C224CEF-9A2D-448F-9028-6B91BC81AB23";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};
