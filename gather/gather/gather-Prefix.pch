@@ -4,6 +4,8 @@
 
 #import <Availability.h>
 
+#define DEBUG_MODE 1
+
 #ifndef __IPHONE_3_0
 #warning "This project uses features only available in iPhone SDK 3.0 and later."
 #endif
