@@ -26,6 +26,8 @@
 - (void) syncWithServer;
 - (void) clear;
 
+- (void) saveSession;
+
 @property (nonatomic) BOOL loggedIn;
 @property (nonatomic, retain) NSString * token;
 @property (nonatomic, retain) NSString * verification;

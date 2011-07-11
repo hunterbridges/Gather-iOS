@@ -109,4 +109,26 @@
     return myData;
 }
 
++ (NSURL *) urlForMethod:(NSString *)method
+{
+    NSString * _str = [NSString stringWithFormat:@"%@%@",apiUrl,method];
+    return [NSURL URLWithString:_str];
+}
+
++ (BOOL) request:(NSMutableURLRequest *)request isCallToMethod:(NSString *) method
+{
+    NSURL * url = [request URL];
+    
+    NSURL * newURL = [[[NSURL alloc] initWithScheme:[url scheme]
+                                              host:[url host]
+                                              path:[url path]] autorelease];
+    
+    if ([newURL isEqual:[GatherAPI urlForMethod:method]])
+    {
+        return YES;
+    } else {
+        return NO;
+    }
+
+}
 @end

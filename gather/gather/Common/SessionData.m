@@ -47,13 +47,9 @@ static SessionData *globalSessionData = nil;
     if ((self = [super init])) {
 		NSUserDefaults * prefs = [NSUserDefaults standardUserDefaults];
 		
-		if ([prefs objectForKey:@"token"] != nil && [prefs objectForKey:@"verification"] != nil)
-		{
-			loggedIn = YES;
-		}
-		
         token = [prefs objectForKey:@"token"];
         verification = [prefs objectForKey:@"verification"];
+        loggedIn = [prefs boolForKey:@"loggedIn"];
         
 		phoneNumber = nil;
 		currentUserId = 0;
@@ -61,10 +57,37 @@ static SessionData *globalSessionData = nil;
     return self;
 }
 
+- (void)saveSession 
+{
+    NSUserDefaults * prefs = [NSUserDefaults standardUserDefaults];
+    
+    if (token != nil)
+    {
+        [prefs setObject:token forKey:@"token"];
+    } else {
+        [prefs removeObjectForKey:@"token"];
+    }
+    
+    if (verification != nil)
+    {
+        [prefs setObject:verification forKey:@"verification"];
+    } else {
+        [prefs removeObjectForKey:@"verification"];
+    }
+    
+    [prefs setBool:loggedIn forKey:@"loggedIn"];  
+    [prefs synchronize];
+}
 - (void) clear
 {
+    token = nil;
+    verification = nil;
+    loggedIn = NO;
+    
 	username = nil;
 	currentUserId = 0;
+    
+    [self saveSession];
 }
 
 

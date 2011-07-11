@@ -43,6 +43,12 @@
 		C1EB5C4613CB727A00F156DB /* LoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C1EB5C4413CB727A00F156DB /* LoginVC.m */; };
 		C1EB5C4713CB727A00F156DB /* LoginVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1EB5C4513CB727A00F156DB /* LoginVC.xib */; };
 		C1EB5C4A13CB79F500F156DB /* PhoneNumberFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = C1EB5C4913CB79F500F156DB /* PhoneNumberFormatter.m */; };
+		C1EB5C4E13CB847900F156DB /* ValidateVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C1EB5C4C13CB847900F156DB /* ValidateVC.m */; };
+		C1EB5C4F13CB847900F156DB /* ValidateVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1EB5C4D13CB847900F156DB /* ValidateVC.xib */; };
+		C1EB5C5513CBB07200F156DB /* FinalizeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C1EB5C5313CBB07100F156DB /* FinalizeVC.m */; };
+		C1EB5C5613CBB07200F156DB /* FinalizeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1EB5C5413CBB07200F156DB /* FinalizeVC.xib */; };
+		C1EB5C5B13CBB20500F156DB /* WhoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C1EB5C5913CBB20500F156DB /* WhoVC.m */; };
+		C1EB5C5C13CBB20500F156DB /* WhoVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1EB5C5A13CBB20500F156DB /* WhoVC.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -110,6 +116,16 @@
 		C1EB5C4513CB727A00F156DB /* LoginVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoginVC.xib; path = iPhone/LoginVC.xib; sourceTree = "<group>"; };
 		C1EB5C4813CB79F500F156DB /* PhoneNumberFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhoneNumberFormatter.h; path = Common/PhoneNumberFormatter.h; sourceTree = "<group>"; };
 		C1EB5C4913CB79F500F156DB /* PhoneNumberFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PhoneNumberFormatter.m; path = Common/PhoneNumberFormatter.m; sourceTree = "<group>"; };
+		C1EB5C4B13CB847900F156DB /* ValidateVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ValidateVC.h; path = iPhone/ValidateVC.h; sourceTree = "<group>"; };
+		C1EB5C4C13CB847900F156DB /* ValidateVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ValidateVC.m; path = iPhone/ValidateVC.m; sourceTree = "<group>"; };
+		C1EB5C4D13CB847900F156DB /* ValidateVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ValidateVC.xib; path = iPhone/ValidateVC.xib; sourceTree = "<group>"; };
+		C1EB5C5013CB9DF400F156DB /* gatherAppState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = gatherAppState.h; path = Common/gatherAppState.h; sourceTree = "<group>"; };
+		C1EB5C5213CBB07100F156DB /* FinalizeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FinalizeVC.h; path = iPhone/FinalizeVC.h; sourceTree = "<group>"; };
+		C1EB5C5313CBB07100F156DB /* FinalizeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FinalizeVC.m; path = iPhone/FinalizeVC.m; sourceTree = "<group>"; };
+		C1EB5C5413CBB07200F156DB /* FinalizeVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FinalizeVC.xib; path = iPhone/FinalizeVC.xib; sourceTree = "<group>"; };
+		C1EB5C5813CBB20500F156DB /* WhoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WhoVC.h; path = iPhone/WhoVC.h; sourceTree = "<group>"; };
+		C1EB5C5913CBB20500F156DB /* WhoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WhoVC.m; path = iPhone/WhoVC.m; sourceTree = "<group>"; };
+		C1EB5C5A13CBB20500F156DB /* WhoVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = WhoVC.xib; path = iPhone/WhoVC.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -222,6 +238,7 @@
 				C1EB58E313CB6B4300F156DB /* Server */,
 				C1EB5C4813CB79F500F156DB /* PhoneNumberFormatter.h */,
 				C1EB5C4913CB79F500F156DB /* PhoneNumberFormatter.m */,
+				C1EB5C5013CB9DF400F156DB /* gatherAppState.h */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -295,11 +312,36 @@
 		C1EB5C4213CB725300F156DB /* VCs */ = {
 			isa = PBXGroup;
 			children = (
+				C1EB5C5113CBA31A00F156DB /* Authentication Flow */,
+				C1EB5C5713CBB1DF00F156DB /* Construct */,
+			);
+			name = VCs;
+			sourceTree = "<group>";
+		};
+		C1EB5C5113CBA31A00F156DB /* Authentication Flow */ = {
+			isa = PBXGroup;
+			children = (
 				C1EB5C4313CB727A00F156DB /* LoginVC.h */,
 				C1EB5C4413CB727A00F156DB /* LoginVC.m */,
 				C1EB5C4513CB727A00F156DB /* LoginVC.xib */,
+				C1EB5C4B13CB847900F156DB /* ValidateVC.h */,
+				C1EB5C4C13CB847900F156DB /* ValidateVC.m */,
+				C1EB5C4D13CB847900F156DB /* ValidateVC.xib */,
+				C1EB5C5213CBB07100F156DB /* FinalizeVC.h */,
+				C1EB5C5313CBB07100F156DB /* FinalizeVC.m */,
+				C1EB5C5413CBB07200F156DB /* FinalizeVC.xib */,
 			);
-			name = VCs;
+			name = "Authentication Flow";
+			sourceTree = "<group>";
+		};
+		C1EB5C5713CBB1DF00F156DB /* Construct */ = {
+			isa = PBXGroup;
+			children = (
+				C1EB5C5813CBB20500F156DB /* WhoVC.h */,
+				C1EB5C5913CBB20500F156DB /* WhoVC.m */,
+				C1EB5C5A13CBB20500F156DB /* WhoVC.xib */,
+			);
+			name = Construct;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -358,6 +400,9 @@
 				C1EB58F213CB6B9000F156DB /* NetworkingTestVC.xib in Resources */,
 				C1EB5C4113CB70E500F156DB /* UniversLTStd-UltraCn.otf in Resources */,
 				C1EB5C4713CB727A00F156DB /* LoginVC.xib in Resources */,
+				C1EB5C4F13CB847900F156DB /* ValidateVC.xib in Resources */,
+				C1EB5C5613CBB07200F156DB /* FinalizeVC.xib in Resources */,
+				C1EB5C5C13CBB20500F156DB /* WhoVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -394,6 +439,9 @@
 				C1EB5C3E13CB6DB800F156DB /* SessionData.m in Sources */,
 				C1EB5C4613CB727A00F156DB /* LoginVC.m in Sources */,
 				C1EB5C4A13CB79F500F156DB /* PhoneNumberFormatter.m in Sources */,
+				C1EB5C4E13CB847900F156DB /* ValidateVC.m in Sources */,
+				C1EB5C5513CBB07200F156DB /* FinalizeVC.m in Sources */,
+				C1EB5C5B13CBB20500F156DB /* WhoVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

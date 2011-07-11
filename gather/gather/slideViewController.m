@@ -36,9 +36,12 @@
     return self;
 }
 -(int)currentPage{
-    int pageNum = ((slideView.contentOffset.x/320)+1);
-    return pageNum;
+    return _currentPage;
 
+}
+-(int)currentIndex{
+    int pageNum = (slideView.contentOffset.x/320);
+    return pageNum;
 }
 -(int)pageCount{
     
@@ -62,18 +65,30 @@
         UIViewController *newView = (UIViewController *)newPage;
         newView.view.frame = CGRectMake(([navigationStack count]*320), 0, 320, 480);
         [slideView addSubview:newView.view];
+        
         slideView.contentSize = CGSizeMake((([navigationStack count]*320)+320), 480);
         [navigationStack addObject:newPage];
         NSLog(@"Stack Count %i", [navigationStack count]);
+        
+        [self updateCurrentPageBasedOnScroll];
+        
         if (scrollStop !=0) {
             [self setScrollStop:scrollStop];
         }
        
     }
 }
+-(void)resetWithPage:(id)newPage 
+{
+    [self removeAllPages];
+    _currentPage = 0;
+    [self addNewPage:newPage];
+    [self scrollToPage:1];
+}
 
 -(void)scrollToPage:(int)page{
     [slideView setContentOffset:CGPointMake((320 * (page - 1)), 0) animated:YES];
+    [self setCurrentPage:page];
 }
 -(void)scrollToLastPage{
     if (scrollStop == 0) {
@@ -91,6 +106,39 @@
     [self scrollToLastPage];
     
 }
+
+- (void) removePage:(int)page
+{
+    if ([self pageCount] > 1)
+    {
+        if (page == [self currentPage])
+        {
+            if (page - 1 >= 1)
+                [self scrollToPage:(page - 1)];
+            else
+                [self scrollToPage:(page + 1)];
+        }
+        
+        [[[navigationStack objectAtIndex:(page - 1)] view] removeFromSuperview];
+        [navigationStack removeObjectAtIndex:(page) - 1];
+        
+        slideView.contentSize = CGSizeMake(([navigationStack count]*320), 480);
+    }
+}
+
+-(void) removeAllPages
+{
+    if ([navigationStack count] > 0)
+    {
+        for (UIViewController * i in navigationStack)
+        {
+            [i.view removeFromSuperview];
+        }
+        
+        [navigationStack removeAllObjects];
+    }
+}
+
 - (void)dealloc
 {
     [super dealloc];
@@ -102,6 +150,32 @@
     [super didReceiveMemoryWarning];
     
     // Release any cached data, images, etc that aren't in use.
+}
+
+- (void) scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    [self updateCurrentPageBasedOnScroll];
+    NSLog(@"Scrolled to page %d",[self currentPage]);
+}
+
+- (void) updateCurrentPageBasedOnScroll
+{
+    int pageNum = ((slideView.contentOffset.x/320)+1);
+    
+    [self setCurrentPage:pageNum];
+}
+
+- (void) setCurrentPage:(int)pageNum
+{
+    if (_currentPage != pageNum)
+    {
+        if (_currentPage > 0 && [navigationStack count] > 0) [[navigationStack objectAtIndex:_currentPage - 1] viewDidDisappear:NO];
+        if (pageNum > 0 && [navigationStack count] > 0) [[navigationStack objectAtIndex:pageNum - 1] viewDidAppear:NO];
+        
+        _currentPage = pageNum;
+        
+        NSLog(@"Updated current page to %d",_currentPage);
+    }
 }
 
 #pragma mark - View lifecycle

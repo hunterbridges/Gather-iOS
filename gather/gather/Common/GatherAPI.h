@@ -20,4 +20,6 @@ static NSString * apiUrl = (DEBUG_MODE==1?@"http://dev.gather.mdor.co/api/1/":@"
 
 + (NSString *) dictionaryToQueryString:(NSDictionary *)dictionary;
 + (NSMutableData *) dictionaryToMultipartEncodedData:(NSDictionary *)dictionary boundary:(NSString *)boundary;
++ (NSURL *) urlForMethod:(NSString *)method;
++ (BOOL) request:(NSMutableURLRequest *)request isCallToMethod:(NSString *) method;
 @end
