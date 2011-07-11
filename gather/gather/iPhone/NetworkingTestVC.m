@@ -7,7 +7,7 @@
 //
 
 #import "NetworkingTestVC.h"
-
+#import "GatherAPI.h"
 
 @implementation NetworkingTestVC
 
@@ -40,8 +40,15 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    NSMutableURLRequest * req = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://www.google.com/"]];
-    [[ConnectionManager sharedInstance] connectRequest:req];
+    NSString * udid = [[[UIDevice currentDevice] uniqueIdentifier] stringByReplacingOccurrencesOfString:@"-" withString:@""];
+    
+    NSMutableDictionary * dict = [[[NSMutableDictionary alloc] init] autorelease];
+    [dict setObject:@"2054753697" forKey:@"phone_number"];
+    [dict setObject:udid forKey:@"device_udid"];
+    [dict setObject:[[UIDevice currentDevice] model] forKey:@"device_type"];
+    NSLog(@"%@", udid);
+    
+    [GatherAPI request:@"tokens" requestMethod:@"POST" requestData:dict];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(connectionFinished:) name:kConnectionFinishedNotification object:nil];
 }
