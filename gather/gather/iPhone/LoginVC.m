@@ -57,11 +57,13 @@
 
 - (void) viewDidAppear:(BOOL)animated
 {
+    NSLog(@"LOGING VIEW APPEARED");
     [super viewDidAppear:animated];
     [phoneNumberField becomeFirstResponder];
 }
 - (void) viewDidDisappear:(BOOL)animated
 {
+    NSLog(@"LOGING VIEW DISSAPPEARD");
     [super viewDidDisappear:animated];
     [phoneNumberField resignFirstResponder];
 }
@@ -100,10 +102,10 @@
             
             [[[UIApplication sharedApplication] delegate] setAppState:kGatherAppStateLoggedOutNeedsPhoneNumber];
             
-            if ([[[[UIApplication sharedApplication] delegate] slideView] pageCount] > 1)
+          /*  if ([[[[UIApplication sharedApplication] delegate] slideView] pageCount] > 1)
             {
                 [[[[UIApplication sharedApplication] delegate] slideView] removePage:2];
-            }
+            }*/
             
             [[SessionData sharedSessionData] setPhoneNumber:nil];
         }

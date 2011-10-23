@@ -10,6 +10,8 @@
 #import "LoginVC.h"
 #import "SessionData.h"
 #import "WhoVC.h"
+#import "viewPlaceHolder.h"
+#import "splitListViewController.h"
 
 @implementation gatherAppDelegate_iPhone
 @synthesize slideView, appState;
@@ -25,7 +27,20 @@
     slideView = [[slideViewController alloc] init];
     [self.window addSubview:slideView.view];
     
-    [self resetNavigationForAuthState];
+  /*  splitListViewController *newSplit = [[splitListViewController alloc] init];
+    [slideView addNewPage:newSplit];
+    
+    viewPlaceHolder *page1 = [[viewPlaceHolder alloc] init];
+    [slideView addNewPage:page1];
+    
+    viewPlaceHolder *page2 = [[viewPlaceHolder alloc] init];
+    [slideView addNewPage:page2];
+    
+    viewPlaceHolder *page3 = [[viewPlaceHolder alloc] init];
+    [slideView addNewPage:page3];
+    */
+    
+  [self resetNavigationForAuthState];
     
     return YES;
 }
@@ -55,14 +70,16 @@
 
 - (void) resetNavigationForAuthState
 {
+    NSLog(@"Resetting Naviation State");
     if (![[SessionData sharedSessionData] loggedIn])
     {
         LoginVC *newPage = [[LoginVC alloc] initWithNibName:@"LoginVC" bundle:nil];
         [slideView resetWithPage:newPage];
         [self setAppState:kGatherAppStateLoggedOutNeedsPhoneNumber];
     } else {
-        WhoVC *newPage = [[WhoVC alloc] initWithNibName:@"WhoVC" bundle:nil];
-        [slideView resetWithPage:newPage];
+        
+        splitListViewController *newSplit = [[splitListViewController alloc] init];
+        [slideView resetWithPage:newSplit];
         [self setAppState:kGatherAppStateLoggedIn];
     }
 }

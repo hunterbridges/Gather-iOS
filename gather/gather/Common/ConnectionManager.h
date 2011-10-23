@@ -28,6 +28,7 @@ static NSString * kConnectionFailedNotification = @"ConnectionManager_connection
 
 - (BOOL) connectRequest:(NSMutableURLRequest *) req;
 - (void) updateStatusIndicator;
+- (BOOL) connectRequest:(NSMutableURLRequest *) req withCallBack:(NSString*)callBack;
 
 @property (nonatomic, retain) NSMutableDictionary * openConnections;
 

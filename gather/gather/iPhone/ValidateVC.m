@@ -72,7 +72,7 @@
         
         [GatherAPI request:@"tokens" requestMethod:@"POST" requestData:dict];
         
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(connectionFinished:) name:kConnectionFinishedNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(connectionFinished:) name:@"POSTtokens" object:nil];
         
         message.text = kCommunicatingText;
         
@@ -110,6 +110,7 @@
         
         NSLog(@"%@", str);
         [str release];
+        [[NSNotificationCenter defaultCenter] removeObserver:self];
     }
 }
 
@@ -162,10 +163,10 @@
         [[SessionData sharedSessionData] setVerification:nil];
         verificationLabel.textColor = [UIColor blackColor];
         
-        if ([[[[UIApplication sharedApplication] delegate] slideView] pageCount] > 2)
+   /*     if ([[[[UIApplication sharedApplication] delegate] slideView] pageCount] > 2)
         {
             [[[[UIApplication sharedApplication] delegate] slideView] removePage:3];
-        }
+        }*/
     }
 }
 @end

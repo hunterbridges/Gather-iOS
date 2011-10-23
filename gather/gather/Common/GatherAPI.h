@@ -15,7 +15,8 @@ static NSString * apiUrl = (DEBUG_MODE==1?@"http://dev.gather.mdor.co/api/1/":@"
 @interface GatherAPI : NSObject {
     
 }
-
++ (void)getNamesAndPlaces;
++ (void)addFriend:(NSString*)name Number:(NSString*)number;
 + (void) request:(NSString *)apiMethod requestMethod:(NSString *)requestMethod requestData:(NSMutableDictionary *)requestData;
 
 + (NSString *) dictionaryToQueryString:(NSDictionary *)dictionary;

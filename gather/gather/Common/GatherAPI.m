@@ -55,10 +55,21 @@
         NSString * bodyString = [[NSString alloc] initWithData:[req HTTPBody] encoding:NSASCIIStringEncoding];
         NSLog(@"%@ %@ %@",[req HTTPMethod],[req URL],bodyString);
     }
-	
-	[[ConnectionManager sharedInstance] connectRequest:req];
+    [[ConnectionManager sharedInstance] connectRequest:req withCallBack:[NSString stringWithFormat:@"%@%@", requestMethod, apiMethod]];
 }
-
++ (void)getNamesAndPlaces{
+    NSMutableDictionary * dict = [[[NSMutableDictionary alloc] init] autorelease];
+    
+    
+    [self request:@"users/me/favlists/default" requestMethod:@"GET" requestData:dict];
+    
+}
++ (void)addFriend:(NSString*)name Number:(NSString*)number{
+    NSMutableDictionary * dict = [[[NSMutableDictionary alloc] init] autorelease];
+    [dict setObject:number forKey:@"phone_number"];
+    [dict setObject:name forKey:@"name"];
+    [self request:@"/users/me/favlists/default/friends" requestMethod:@"POST" requestData:dict];
+}
 #pragma mark Util
 + (NSString *) dictionaryToQueryString:(NSDictionary *)dictionary
 {

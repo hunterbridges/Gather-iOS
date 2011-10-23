@@ -14,6 +14,7 @@
     NSMutableArray *navigationStack;
     int scrollStop;
     int _currentPage;
+    UIViewController *removePage;
 }
 @property (readonly) int currentPage;
 @property (readonly) int currentIndex;
@@ -27,7 +28,6 @@
 -(void)setScrollStop:(int)atPage;
 - (void) removePage:(int)page;
 - (void) removeAllPages;
-
 -(void)resetScrollStop;
 - (void) updateCurrentPageBasedOnScroll;
 - (void) setCurrentPage:(int)pageNum;
