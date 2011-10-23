@@ -7,8 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4833FDCB13F1673F00943A3D /* arrowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4833FDCA13F1673F00943A3D /* arrowView.m */; };
+		4833FDD513F16D7400943A3D /* exView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4833FDD413F16D7300943A3D /* exView.m */; };
+		4833FDDE13F18D5100943A3D /* splitListCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4833FDDD13F18D5100943A3D /* splitListCellView.m */; };
+		48869FB413F49C66000B4812 /* staticListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 48869FB313F49C66000B4812 /* staticListView.m */; };
+		48869FBE13F4B8F9000B4812 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48869FBC13F4B8F9000B4812 /* AddressBook.framework */; };
+		48869FBF13F4B8F9000B4812 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48869FBD13F4B8F9000B4812 /* AddressBookUI.framework */; };
+		48869FC213F4B976000B4812 /* plusButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 48869FC113F4B976000B4812 /* plusButtonView.m */; };
 		48AF6BF113C8F6510062B769 /* slideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48AF6BF013C8F6510062B769 /* slideViewController.m */; };
 		48AF6BF413C8F6720062B769 /* viewPlaceHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 48AF6BF313C8F6720062B769 /* viewPlaceHolder.m */; };
+		48BC159013F0AB5A00E14779 /* splitListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48BC158F13F0AB5A00E14779 /* splitListViewController.m */; };
 		C1C2C01813C8C48C00CD103D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1C2C01713C8C48C00CD103D /* UIKit.framework */; };
 		C1C2C01A13C8C48C00CD103D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1C2C01913C8C48C00CD103D /* Foundation.framework */; };
 		C1C2C01C13C8C48C00CD103D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1C2C01B13C8C48C00CD103D /* CoreGraphics.framework */; };
@@ -52,10 +60,24 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4833FDC913F1673F00943A3D /* arrowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = arrowView.h; sourceTree = "<group>"; };
+		4833FDCA13F1673F00943A3D /* arrowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = arrowView.m; sourceTree = "<group>"; };
+		4833FDD313F16D7300943A3D /* exView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = exView.h; sourceTree = "<group>"; };
+		4833FDD413F16D7300943A3D /* exView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = exView.m; sourceTree = "<group>"; };
+		4833FDDC13F18D4F00943A3D /* splitListCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = splitListCellView.h; sourceTree = "<group>"; };
+		4833FDDD13F18D5100943A3D /* splitListCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = splitListCellView.m; sourceTree = "<group>"; };
+		48869FB213F49C66000B4812 /* staticListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = staticListView.h; sourceTree = "<group>"; };
+		48869FB313F49C66000B4812 /* staticListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = staticListView.m; sourceTree = "<group>"; };
+		48869FBC13F4B8F9000B4812 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		48869FBD13F4B8F9000B4812 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
+		48869FC013F4B976000B4812 /* plusButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = plusButtonView.h; sourceTree = "<group>"; };
+		48869FC113F4B976000B4812 /* plusButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = plusButtonView.m; sourceTree = "<group>"; };
 		48AF6BEF13C8F6510062B769 /* slideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = slideViewController.h; sourceTree = "<group>"; };
 		48AF6BF013C8F6510062B769 /* slideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = slideViewController.m; sourceTree = "<group>"; };
 		48AF6BF213C8F6720062B769 /* viewPlaceHolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = viewPlaceHolder.h; sourceTree = "<group>"; };
 		48AF6BF313C8F6720062B769 /* viewPlaceHolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = viewPlaceHolder.m; sourceTree = "<group>"; };
+		48BC158E13F0AB5A00E14779 /* splitListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = splitListViewController.h; sourceTree = "<group>"; };
+		48BC158F13F0AB5A00E14779 /* splitListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = splitListViewController.m; sourceTree = "<group>"; };
 		C1C2C01313C8C48C00CD103D /* gather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = gather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1C2C01713C8C48C00CD103D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C1C2C01913C8C48C00CD103D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -133,6 +155,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48869FBE13F4B8F9000B4812 /* AddressBook.framework in Frameworks */,
+				48869FBF13F4B8F9000B4812 /* AddressBookUI.framework in Frameworks */,
 				C1C2C01813C8C48C00CD103D /* UIKit.framework in Frameworks */,
 				C1C2C01A13C8C48C00CD103D /* Foundation.framework in Frameworks */,
 				C1C2C01C13C8C48C00CD103D /* CoreGraphics.framework in Frameworks */,
@@ -146,6 +170,18 @@
 		48AF6BDF13C8DEC60062B769 /* UI Classes */ = {
 			isa = PBXGroup;
 			children = (
+				48BC158E13F0AB5A00E14779 /* splitListViewController.h */,
+				48BC158F13F0AB5A00E14779 /* splitListViewController.m */,
+				48869FC013F4B976000B4812 /* plusButtonView.h */,
+				48869FC113F4B976000B4812 /* plusButtonView.m */,
+				48869FB213F49C66000B4812 /* staticListView.h */,
+				48869FB313F49C66000B4812 /* staticListView.m */,
+				4833FDDC13F18D4F00943A3D /* splitListCellView.h */,
+				4833FDDD13F18D5100943A3D /* splitListCellView.m */,
+				4833FDC913F1673F00943A3D /* arrowView.h */,
+				4833FDCA13F1673F00943A3D /* arrowView.m */,
+				4833FDD313F16D7300943A3D /* exView.h */,
+				4833FDD413F16D7300943A3D /* exView.m */,
 				48AF6BEF13C8F6510062B769 /* slideViewController.h */,
 				48AF6BF013C8F6510062B769 /* slideViewController.m */,
 				48AF6BF213C8F6720062B769 /* viewPlaceHolder.h */,
@@ -157,6 +193,8 @@
 		C1C2C00813C8C48C00CD103D = {
 			isa = PBXGroup;
 			children = (
+				48869FBC13F4B8F9000B4812 /* AddressBook.framework */,
+				48869FBD13F4B8F9000B4812 /* AddressBookUI.framework */,
 				C1C2C01F13C8C48C00CD103D /* gather */,
 				C1C2C01613C8C48C00CD103D /* Frameworks */,
 				C1C2C01413C8C48C00CD103D /* Products */,
@@ -442,6 +480,12 @@
 				C1EB5C4E13CB847900F156DB /* ValidateVC.m in Sources */,
 				C1EB5C5513CBB07200F156DB /* FinalizeVC.m in Sources */,
 				C1EB5C5B13CBB20500F156DB /* WhoVC.m in Sources */,
+				48BC159013F0AB5A00E14779 /* splitListViewController.m in Sources */,
+				4833FDCB13F1673F00943A3D /* arrowView.m in Sources */,
+				4833FDD513F16D7400943A3D /* exView.m in Sources */,
+				4833FDDE13F18D5100943A3D /* splitListCellView.m in Sources */,
+				48869FB413F49C66000B4812 /* staticListView.m in Sources */,
+				48869FC213F4B976000B4812 /* plusButtonView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -487,7 +531,7 @@
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D871EDD5-2346-4F0C-B241-BD963B78FDD4";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -503,7 +547,7 @@
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -521,8 +565,9 @@
 				GCC_PREFIX_HEADER = "gather/gather-Prefix.pch";
 				HEADER_SEARCH_PATHS = "../json-framework/Classes";
 				INFOPLIST_FILE = "gather/gather-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "9C224CEF-9A2D-448F-9028-6B91BC81AB23";
+				PROVISIONING_PROFILE = "9E34CFDB-9F5C-4348-AEAA-405013771BCA";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -537,8 +582,9 @@
 				GCC_PREFIX_HEADER = "gather/gather-Prefix.pch";
 				HEADER_SEARCH_PATHS = "../json-framework/Classes";
 				INFOPLIST_FILE = "gather/gather-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "9C224CEF-9A2D-448F-9028-6B91BC81AB23";
+				PROVISIONING_PROFILE = "9E34CFDB-9F5C-4348-AEAA-405013771BCA";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};

@@ -9,6 +9,7 @@
 //  Permission granted to do anything, commercial/non-commercial with this file apart from removing the line/URL above
 
 #import "ConnectionManager.h"
+#import "SBJson.h"
 
 static ConnectionManager *_instance;
 @implementation ConnectionManager
@@ -100,7 +101,7 @@ static ConnectionManager *_instance;
     {
         NSMutableDictionary * dict = [[NSMutableDictionary alloc] init];
         NSMutableData * data = [[NSMutableData alloc] initWithCapacity:1];
-        
+        [dict setObject:kConnectionFinishedNotification forKey:@"callBack"];
         [dict setObject:req forKey:@"request"];
         [dict setObject:conn forKey:@"connection"];
         [dict setObject:data forKey:@"data"];
@@ -113,6 +114,29 @@ static ConnectionManager *_instance;
     } else {
         return NO;
     }
+}
+
+- (BOOL) connectRequest:(NSMutableURLRequest *) req withCallBack:(NSString*)callBack{
+    IndexedURLConnection * conn = [[IndexedURLConnection alloc] initWithRequest:req  hash:[self genHash] delegate:self];
+    
+    if (conn)
+    {
+        NSMutableDictionary * dict = [[NSMutableDictionary alloc] init];
+        NSMutableData * data = [[NSMutableData alloc] initWithCapacity:1];
+        [dict setObject:callBack forKey:@"callBack"];
+        [dict setObject:req forKey:@"request"];
+        [dict setObject:conn forKey:@"connection"];
+        [dict setObject:data forKey:@"data"];
+        
+        [openConnections setObject:dict forKey:[conn hashString]];
+        
+        [self updateStatusIndicator];
+        
+        return YES;
+    } else {
+        return NO;
+    }
+    
 }
 
 - (void) connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
@@ -151,7 +175,7 @@ static ConnectionManager *_instance;
     [openConnections removeObjectForKey:[connection hashString]];
     
     [self updateStatusIndicator];
-    [[NSNotificationCenter defaultCenter] postNotificationName:kConnectionFinishedNotification object:nil userInfo:dict];
+    [[NSNotificationCenter defaultCenter] postNotificationName:[dict objectForKey:@"callBack"] object:nil userInfo:dict];
 }
 
 - (void) updateStatusIndicator

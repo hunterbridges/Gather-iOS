@@ -47,7 +47,7 @@
         
         [GatherAPI request:@"users/me" requestMethod:@"GET" requestData:dict];
         
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(connectionFinished:) name:kConnectionFinishedNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(connectionFinished:) name:@"GETusers/me" object:nil];
         
         message.text = kFinalizingText;
         
@@ -84,7 +84,7 @@
         [[SessionData sharedSessionData] saveSession];
         
         [[[UIApplication sharedApplication] delegate] resetNavigationForAuthState];
-        
+        [[NSNotificationCenter defaultCenter] removeObserver:self];
         
         NSLog(@"%@", str);
         [str release];
