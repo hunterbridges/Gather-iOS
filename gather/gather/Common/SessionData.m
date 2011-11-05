@@ -1,11 +1,3 @@
-//
-//  SessionData.m
-//  Gather
-//
-//  Created by Hunter B on 07/10/11.
-//  Copyright 2010 Meedeor. All rights reserved.
-//
-
 #import "SessionData.h"
 #import "SBJson.h"
 #import "GatherAPI.h"
@@ -14,8 +6,12 @@ static SessionData *globalSessionData = nil;
 
 @implementation SessionData
 
-@synthesize loggedIn, token, verification, phoneNumber, currentUserId;
-@synthesize syncing;
+@synthesize loggedIn = loggedIn_;
+@synthesize token = token_;
+@synthesize verification = verification_;
+@synthesize phoneNumber = phoneNumber_;
+@synthesize currentUserId = currentUserId_;
+@synthesize syncing = syncing_;
 
 #pragma mark Singleton Methods
 + (id)sharedSessionData {
@@ -25,80 +21,81 @@ static SessionData *globalSessionData = nil;
     }
     return globalSessionData;
 }
+
 + (id)allocWithZone:(NSZone *)zone {
     return [[self sharedSessionData] retain];
 }
+
 - (id)copyWithZone:(NSZone *)zone {
     return self;
 }
+
 - (id)retain {
     return self;
 }
+
 - (unsigned)retainCount {
     return UINT_MAX; //denotes an object that cannot be released
 }
-- (void)release {
+
+- (oneway void)release {
     // never release
 }
+
 - (id)autorelease {
     return self;
 }
+
 - (id)init {
     if ((self = [super init])) {
 		NSUserDefaults * prefs = [NSUserDefaults standardUserDefaults];
 		
-        token = [prefs objectForKey:@"token"];
-        verification = [prefs objectForKey:@"verification"];
-        loggedIn = [prefs boolForKey:@"loggedIn"];
+        token_ = [prefs objectForKey:@"token"];
+        verification_ = [prefs objectForKey:@"verification"];
+        loggedIn_ = [prefs boolForKey:@"loggedIn"];
         
-		phoneNumber = nil;
-		currentUserId = 0;
+		phoneNumber_ = nil;
+		currentUserId_ = 0;
     }
     return self;
 }
 
-- (void)saveSession 
-{
+- (void)saveSession {
     NSUserDefaults * prefs = [NSUserDefaults standardUserDefaults];
     
-    if (token != nil)
-    {
-        [prefs setObject:token forKey:@"token"];
+    if (token_ != nil) {
+        [prefs setObject:token_ forKey:@"token"];
     } else {
         [prefs removeObjectForKey:@"token"];
     }
     
-    if (verification != nil)
-    {
-        [prefs setObject:verification forKey:@"verification"];
+    if (verification_ != nil) {
+        [prefs setObject:verification_ forKey:@"verification"];
     } else {
         [prefs removeObjectForKey:@"verification"];
     }
     
-    [prefs setBool:loggedIn forKey:@"loggedIn"];  
+    [prefs setBool:loggedIn_ forKey:@"loggedIn"];  
     [prefs synchronize];
 }
-- (void) clear
-{
-    token = nil;
-    verification = nil;
-    loggedIn = NO;
+
+- (void) clear {
+    token_ = nil;
+    verification_ = nil;
+    loggedIn_ = NO;
     
-	username = nil;
-	currentUserId = 0;
+	username_ = nil;
+	currentUserId_ = 0;
     
     [self saveSession];
 }
 
-
-- (void) needsSync
-{
+- (void) needsSync {
 	[self syncWithServer];
 }
 
-- (void) syncWithServer
-{
-	syncing = YES;
+- (void) syncWithServer {
+	syncing_ = YES;
     
     // TODO: Init sync request
 }

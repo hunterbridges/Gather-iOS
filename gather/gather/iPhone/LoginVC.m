@@ -1,117 +1,104 @@
-//
-//  LoginVC.m
-//  gather
-//
-//  Created by Hunter B on 7/11/11.
-//  Copyright 2011 Meedeor, LLC. All rights reserved.
-//
-
+#import "GatherAppDelegate.h"
+#import "GatherAppState.h"
 #import "LoginVC.h"
 #import "PhoneNumberFormatter.h"
-#import "ValidateVC.h"
 #import "SessionData.h"
-#import "gatherAppState.h"
+#import "ValidateVC.h"
 
 @implementation LoginVC
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-- (void)dealloc
-{
-    [super dealloc];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
+- (id)initWithNibName:(NSString *)nibNameOrNil
+               bundle:(NSBundle *)nibBundleOrNil {
+  self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+  if (self) {
     
-    // Release any cached data, images, etc that aren't in use.
+  }
+  return self;
+}
+
+- (void)dealloc {
+  [super dealloc];
+}
+
+- (void)didReceiveMemoryWarning {
+  [super didReceiveMemoryWarning];
 }
 
 #pragma mark - View lifecycle
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-    
-    [phoneNumberLabel setFont:[UIFont fontWithName:@"UniversLTStd-UltraCn" size:60]];
-    
-    [instructionsLabel setFont:[UIFont fontWithName:@"UniversLTStd-UltraCn" size:20]];
+- (void)viewDidLoad {
+  [super viewDidLoad];
+  [phoneNumberLabel_ setFont:[UIFont fontWithName:@"UniversLTStd-UltraCn"
+                                             size:60]];
+
+  [instructionsLabel_ setFont:[UIFont fontWithName:@"UniversLTStd-UltraCn"
+                                              size:20]];
 }
 
-- (void)viewDidUnload
-{
+- (void)viewDidUnload {
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
 
-- (void) viewDidAppear:(BOOL)animated
-{
-    NSLog(@"LOGING VIEW APPEARED");
+- (void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [phoneNumberField becomeFirstResponder];
+    [phoneNumberField_ becomeFirstResponder];
 }
-- (void) viewDidDisappear:(BOOL)animated
-{
-    NSLog(@"LOGING VIEW DISSAPPEARD");
+
+- (void) viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-    [phoneNumberField resignFirstResponder];
+    [phoneNumberField_ resignFirstResponder];
 }
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+- (BOOL)shouldAutorotateToInterfaceOrientation:
+    (UIInterfaceOrientation)interfaceOrientation
 {
-    // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
-{
-    NSCharacterSet * set = [[NSCharacterSet characterSetWithCharactersInString:@"0123456789"] invertedSet];
-    
-    if ([string rangeOfCharacterFromSet:set].location != NSNotFound) {
-        return FALSE;
+- (BOOL)textField:(UITextField *)textField
+    shouldChangeCharactersInRange:(NSRange)range
+    replacementString:(NSString *)string {
+  NSCharacterSet * set =
+      [[NSCharacterSet characterSetWithCharactersInString:@"0123456789"]
+          invertedSet];
+  if ([string rangeOfCharacterFromSet:set].location != NSNotFound) {
+    return FALSE;
+  } else {
+    NSString * post =
+        [[textField text] stringByReplacingCharactersInRange:range
+                                                  withString:string];
+      
+    PhoneNumberFormatter * pn = [[PhoneNumberFormatter alloc] init];
+    phoneNumberLabel_.text = [pn format:post withLocale:@"us"];
+      
+    if ([post length] == 10 &&
+      [[[phoneNumberLabel_ text] substringToIndex:1] isEqualToString:@"("]) {
+      instructionsLabel_.text = @"SWIPE LEFT TO LOG IN";
+      phoneNumberLabel_.textColor = [UIColor colorWithRed:1.0
+                                                    green:93.0/255.0
+                                                     blue:53.0/255.0
+                                                    alpha:1.0];
+      
+      [[SessionData sharedSessionData] setPhoneNumber:post];
+      [[[UIApplication sharedApplication] delegate]
+          setAppState:kGatherAppStateLoggedOutHasPhoneNumber];
+      
+      ValidateVC *new = [[ValidateVC alloc] initWithNibName:@"ValidateVC"
+                                                     bundle:nil];
+      // TODO: Why accessing slideView on app delegate directly here?
+      [[[[UIApplication sharedApplication] delegate] slideView] addNewPage:new];
     } else {
-        NSString * post = [[textField text] stringByReplacingCharactersInRange:range withString:string];
+      instructionsLabel_.text = @"HELLO. WHAT IS YOUR CELL PHONE NUMBER?";
+      phoneNumberLabel_.textColor = [UIColor blackColor];
         
-        PhoneNumberFormatter * pn = [[PhoneNumberFormatter alloc] init];
-        
-        phoneNumberLabel.text = [pn format:post withLocale:@"us"];
-        
-        if ([post length] == 10 && [[[phoneNumberLabel text] substringToIndex:1] isEqualToString:@"("])
-        {
-            instructionsLabel.text = @"SWIPE LEFT TO LOG IN";
-            phoneNumberLabel.textColor = [UIColor colorWithRed:1.0 green:93.0/255.0 blue:53.0/255.0 alpha:1.0];
-            
-            [[SessionData sharedSessionData] setPhoneNumber:post];
-            [[[UIApplication sharedApplication] delegate] setAppState:kGatherAppStateLoggedOutHasPhoneNumber];
-            
-            ValidateVC *new = [[ValidateVC alloc] initWithNibName:@"ValidateVC" bundle:nil];
-            [[[[UIApplication sharedApplication] delegate] slideView] addNewPage: new];
-        } else {
-            instructionsLabel.text = @"HELLO. WHAT IS YOUR CELL PHONE NUMBER?";
-            phoneNumberLabel.textColor = [UIColor blackColor];
-            
-            [[[UIApplication sharedApplication] delegate] setAppState:kGatherAppStateLoggedOutNeedsPhoneNumber];
-            
-          /*  if ([[[[UIApplication sharedApplication] delegate] slideView] pageCount] > 1)
-            {
-                [[[[UIApplication sharedApplication] delegate] slideView] removePage:2];
-            }*/
-            
-            [[SessionData sharedSessionData] setPhoneNumber:nil];
-        }
-        
-        return TRUE;
+      [[[UIApplication sharedApplication] delegate]
+          setAppState:kGatherAppStateLoggedOutNeedsPhoneNumber];
+      
+      [[SessionData sharedSessionData] setPhoneNumber:nil];
     }
+    return TRUE;
+  }
 }
 
 @end
