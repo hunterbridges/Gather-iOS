@@ -11,7 +11,6 @@
     NSMutableArray *selectedArray_;
     UIView *rightContainer_;
     StaticListView *staticList_;
-    
 }
 
 - (NSString*)formattedNameString:(NSString*)name;

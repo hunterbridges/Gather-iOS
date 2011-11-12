@@ -2,11 +2,13 @@
 
 #import "GatherAppDelegate.h"
 #import "GatherAppState.h"
-#import "SlideViewController.h"
 
+@class AppContext;
+@class SlideViewController;
 @interface GatherAppDelegate_iPhone : GatherAppDelegate {
-    SlideViewController *slideView_;
-    GatherAppState appState_;
+  AppContext *ctx_;
+  SlideViewController *slideView_;
+  GatherAppState appState_;
 }
 
 - (void)resetNavigationForAuthState;

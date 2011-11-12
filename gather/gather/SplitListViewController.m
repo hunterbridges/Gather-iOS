@@ -1,6 +1,6 @@
 #import "ArrowView.h"
 #import "ExView.h"
-#import "GatherAPI.h"
+#import "GatherServer.h"
 #import "PhoneNumberFormatter.h"
 #import "PlusButtonView.h"
 #import "SBJson.h"
@@ -72,7 +72,7 @@
 }
 
 - (void)viewDidLoad {
-  [GatherAPI getNamesAndPlaces];
+  [GatherServer getNamesAndPlaces];
   [[NSNotificationCenter defaultCenter] 
       addObserver:self
          selector:@selector(connectionFinished:)
@@ -247,7 +247,7 @@
     phoneNumber = [NSString stringWithFormat:@""];
   }
 
-  [GatherAPI addFriend:name withNumber:phoneNumber];
+  [GatherServer addFriend:name withNumber:phoneNumber];
   [[NSNotificationCenter defaultCenter]
       addObserver:self
          selector:@selector(friendAdded:)

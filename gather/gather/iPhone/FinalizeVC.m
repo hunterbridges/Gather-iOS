@@ -1,5 +1,5 @@
 #import "FinalizeVC.h"
-#import "GatherAPI.h"
+#import "GatherServer.h"
 #import "SessionData.h"
 #import "GatherAppState.h"
 
@@ -33,7 +33,7 @@
     [dict setObject:[[SessionData sharedSessionData] verification]
              forKey:@"verification"];
 
-    [GatherAPI request:@"users/me" requestMethod:@"GET" requestData:dict];
+    [GatherServer requestWithAPIMethod:@"users/me" withHTTPMethod:@"GET" withData:dict];
 
     [[NSNotificationCenter defaultCenter]
         addObserver:self
@@ -59,7 +59,7 @@
   NSMutableDictionary * dict = (NSMutableDictionary *)[notification userInfo];
   NSMutableURLRequest * req = [dict objectForKey:@"request"];
 
-  if ([GatherAPI request:req isCallToMethod:@"users/me"]) {
+  if ([GatherServer request:req isCallToMethod:@"users/me"]) {
     NSString * str =
         [[NSString alloc] initWithData:[dict objectForKey:@"data"]
                               encoding:NSUTF8StringEncoding];

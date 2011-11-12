@@ -1,5 +1,4 @@
 #import "SlideViewController.h"
-#import "ViewPlaceHolder.h"
 
 @implementation SlideViewController
 
@@ -164,7 +163,7 @@
 
 - (void)scrollToPage:(int)page {
   [slideView_ setContentOffset:CGPointMake((320 * (page - 1)), 0)
-                     animated:YES];
+                      animated:YES];
 }
 
 - (void)scrollToLastPage {

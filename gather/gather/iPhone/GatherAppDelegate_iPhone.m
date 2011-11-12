@@ -1,8 +1,10 @@
+#import "AppContext.h"
 #import "GatherAppDelegate_iPhone.h"
+#import "GatherServer.h"
 #import "LoginVC.h"
 #import "SessionData.h"
+#import "SlideViewController.h"
 #import "SplitListViewController.h"
-#import "ViewPlaceHolder.h"
 #import "WhoVC.h"
 
 @implementation GatherAppDelegate_iPhone
@@ -10,12 +12,26 @@
 @synthesize appState = appState_;
 
 - (void)dealloc {
+  [ctx_ release];
+  [slideView_ release];
 	[super dealloc];
 }
 
 - (BOOL)application:(UIApplication *)application
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   NSLog(@"Iphone Launched");
+  
+  NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+  NSDictionary *appDefaults =
+  [NSDictionary dictionaryWithObject:@"http://dev.gather.mdor.co/"
+                              forKey:@"serverURL"];
+  [defaults registerDefaults:appDefaults];
+  [defaults synchronize];
+  
+  GatherServer *server = [[GatherServer alloc] init];
+  ctx_ = [[AppContext alloc] initWithServer:server];
+  [server release];
+  
   slideView_ = [[SlideViewController alloc] init];
   [self.window addSubview:slideView_.view];
     
@@ -33,7 +49,7 @@
   if ([[uriSegments objectAtIndex:0] isEqualToString:@"verify"]) {
     NSLog(@"Verify with code %@", [uriSegments objectAtIndex:1]);
 
-    if (appState_ == kGatherAppStateLoggedOutNeedsVerification) {
+    if (ctx_.appState == kGatherAppStateLoggedOutNeedsVerification) {
       NSMutableDictionary * _userData =
           [[[NSMutableDictionary alloc] init] autorelease];
       [_userData setObject:[uriSegments objectAtIndex:1] forKey:@"verification"];
@@ -52,8 +68,9 @@
 
 - (void)resetNavigationForAuthState {
   NSLog(@"Resetting Naviation State");
-  if (![[SessionData sharedSessionData] loggedIn]) {
+  if (![ctx_.server.sessionData loggedIn]) {
     LoginVC *newPage = [[LoginVC alloc] initWithNibName:@"LoginVC" bundle:nil];
+    newPage.ctx = ctx_;
     [slideView_ resetWithPage:newPage];
     [self setAppState:kGatherAppStateLoggedOutNeedsPhoneNumber];
   } else {

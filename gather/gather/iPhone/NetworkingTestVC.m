@@ -1,5 +1,5 @@
 #import "NetworkingTestVC.h"
-#import "GatherAPI.h"
+#import "GatherServer.h"
 
 @implementation NetworkingTestVC
 
@@ -42,7 +42,7 @@
     [dict setObject:[[UIDevice currentDevice] model] forKey:@"device_type"];
     NSLog(@"%@", udid);
     
-    [GatherAPI request:@"tokens" requestMethod:@"POST" requestData:dict];
+    [GatherServer requestWithAPIMethod:@"tokens" withHTTPMethod:@"POST" withData:dict];
     //END LOGIN REQUEST
     
     
