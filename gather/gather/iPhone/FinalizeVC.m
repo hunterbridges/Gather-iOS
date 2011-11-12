@@ -1,9 +1,14 @@
+#import "AppContext.h"
 #import "FinalizeVC.h"
-#import "GatherAPI.h"
-#import "SessionData.h"
 #import "GatherAppState.h"
+#import "GatherRequestDelegate.h"
+#import "GatherServer.h"
+#import "SessionData.h"
+#import "SlideNavigationController.h"
+#import "SlideViewController.h"
 
 @implementation FinalizeVC
+@synthesize ctx;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil
                bundle:(NSBundle *)nibBundleOrNil {
@@ -15,6 +20,9 @@
 }
 
 - (void)dealloc {
+  [ctx_ release];
+  [message_ release];
+  [userInfoRequest_ release];
   [super dealloc];
 }
 
@@ -24,62 +32,44 @@
 
 #pragma mark - View lifecycle
 
-- (void)viewDidAppear:(BOOL)animated {
-  if (!requested_)
-  {
-    NSMutableDictionary * dict =
-        [[[NSMutableDictionary alloc] init] autorelease];
-    [dict setObject:[[SessionData sharedSessionData] token] forKey:@"token"];
-    [dict setObject:[[SessionData sharedSessionData] verification]
-             forKey:@"verification"];
-
-    [GatherAPI request:@"users/me" requestMethod:@"GET" requestData:dict];
-
-    [[NSNotificationCenter defaultCenter]
-        addObserver:self
-           selector:@selector(connectionFinished:)
-               name:@"GETusers/me"
-             object:nil];
-
+- (void)viewDidAppearInSlideNavigation {
+  [super viewDidAppearInSlideNavigation];
+  if (!requested_) {
+    userInfoRequest_ = 
+        [[self.ctx.server requestInfoForCurrentUserWithDelegate:self] retain];
     message_.text = kFinalizingText;
-
-    [[[UIApplication sharedApplication] delegate]
-        setAppState:kGatherAppStateLoggedOutFinalizing];
-
+    self.ctx.appState = kGatherAppStateLoggedOutFinalizing;
     requested_ = YES;
   }
 }
 
 - (void)viewDidUnload {
     [super viewDidUnload];
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-- (void)connectionFinished:(NSNotification*)notification {
-  NSMutableDictionary * dict = (NSMutableDictionary *)[notification userInfo];
-  NSMutableURLRequest * req = [dict objectForKey:@"request"];
-
-  if ([GatherAPI request:req isCallToMethod:@"users/me"]) {
-    NSString * str =
-        [[NSString alloc] initWithData:[dict objectForKey:@"data"]
-                              encoding:NSUTF8StringEncoding];
-    id json = [str JSONValue];
-    
+- (void)gatherRequest:(GatherRequest *)request
+   didSucceedWithJSON:(id)json {
+  if ([request isEqual:userInfoRequest_]) {
     if ([json objectForKey:@"id"] != nil) {
-      [[SessionData sharedSessionData]
-          setCurrentUserId:[[json objectForKey:@"id"] intValue]];
+      self.ctx.server.sessionData.currentUserId =
+          [[json objectForKey:@"id"] intValue];
+      
+      self.ctx.server.sessionData.loggedIn = YES;
+      // [self.ctx.server.sessionData saveSession];
+      
+      [[NSNotificationCenter defaultCenter]
+          postNotificationName:@"authStateDidChange"
+                        object:nil];
     }
     
-    [[SessionData sharedSessionData] setLoggedIn:YES];
-    [[SessionData sharedSessionData] saveSession];
-    
-    // TODO: Should we be using app delegate here?
-    [[[UIApplication sharedApplication] delegate] resetNavigationForAuthState];
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-    
-    NSLog(@"%@", str);
-    [str release];
+    [userInfoRequest_ release];
+    userInfoRequest_ = nil;
   }
+}
+
+- (void)gatherRequest:(GatherRequest *)request
+    didFailWithReason:(GatherRequestFailureReason)reason {
+  // TODO: Catch failure
 }
 
 - (void)viewDidLoad {

@@ -1,7 +1,7 @@
 #import <UIKit/UIKit.h>
 
-
-@interface SlideViewController : UIViewController <UIScrollViewDelegate> {
+@class SlideViewController;
+@interface SlideNavigationController : UIViewController <UIScrollViewDelegate> {
   UIScrollView *slideView_;
   NSMutableArray *navigationStack_;
   int scrollStop_;
@@ -13,12 +13,12 @@
 @property (readonly) int currentIndex;
 @property (readonly) int pageCount;
 
-- (void)addNewPage:(id)newPage;
-- (void)resetWithPage:(id)newPage;
+- (void)addNewPage:(SlideViewController *)newPage;
+- (void)resetWithPage:(SlideViewController *)newPage;
 - (void)scrollToPage:(int)page;
 - (void)scrollToLastPage;
 - (void)scrollToFirstPage;
-- (void)pushNewPage:(id)newPage;
+- (void)pushNewPage:(SlideViewController *)newPage;
 - (void)setScrollStop:(int)atPage;
 - (void)removePage:(int)page;
 - (void)removeAllPages;

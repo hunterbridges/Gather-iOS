@@ -2,16 +2,18 @@
 
 #import "GatherAppDelegate.h"
 #import "GatherAppState.h"
-#import "SlideViewController.h"
 
+@class AppContext;
+@class SlideNavigationController;
 @interface GatherAppDelegate_iPhone : GatherAppDelegate {
-    SlideViewController *slideView_;
-    GatherAppState appState_;
+  AppContext *ctx_;
+  SlideNavigationController *slideView_;
+  GatherAppState appState_;
 }
 
 - (void)resetNavigationForAuthState;
 
-@property (nonatomic, retain) SlideViewController *slideView;
+@property (nonatomic, retain) SlideNavigationController *slideView;
 @property (nonatomic) GatherAppState appState;
 
 @end

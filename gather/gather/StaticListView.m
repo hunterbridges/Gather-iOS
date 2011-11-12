@@ -1,6 +1,5 @@
 #import "StaticListView.h"
 
-// TODO: Is this generalized?
 @implementation StaticListView
 
 - (id)initWithFrame:(CGRect)frame {

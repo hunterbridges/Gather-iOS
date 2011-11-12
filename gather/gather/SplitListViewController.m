@@ -1,14 +1,15 @@
+#import "AppContext.h"
 #import "ArrowView.h"
 #import "ExView.h"
-#import "GatherAPI.h"
+#import "GatherServer.h"
 #import "PhoneNumberFormatter.h"
 #import "PlusButtonView.h"
 #import "SBJson.h"
 #import "SplitListCellView.h"
 #import "SplitListViewController.h"
 
-// TODO: Does this need to be generalized so we can use with friends and places?
 @implementation SplitListViewController
+@synthesize ctx = ctx_;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil
                bundle:(NSBundle *)nibBundleOrNil {
@@ -20,6 +21,14 @@
 }
 
 - (void)dealloc {
+  [listView_ release];
+  [listArray_ release];
+  [selectedArray_ release];
+  [rightContainer_ release];
+  [staticList_ release];
+  [ctx_ release];
+  [favlistRequest_ release];
+  [addFriendRequest_ release];
   [super dealloc];
 }
 
@@ -55,29 +64,35 @@
   [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-- (void)friendAdded:(NSNotification*)notification {
-  NSMutableDictionary * dict = (NSMutableDictionary *)[notification userInfo];
-  NSString * str = [[NSString alloc] initWithData:[dict objectForKey:@"data"]
-                                         encoding:NSUTF8StringEncoding];
-  id json = [str JSONValue];
-  NSDictionary *newFriend = (NSDictionary*)json;
-  [listArray_ addObject:newFriend];
-  [staticList_
-      addName:[self formattedNameString:[newFriend objectForKey:@"name"]]];
-  [selectedArray_ addObject:newFriend];
-  [listView_ reloadData];
-  NSLog(@"%@", str);
+- (void)gatherRequest:(GatherRequest *)request didSucceedWithJSON:(id)json {
+  if ([request isEqual:favlistRequest_]) {
+    id fJson = [json objectForKey:@"friends"];
+    NSArray *friends = (NSArray*)fJson;
+    [listArray_ addObjectsFromArray:friends];
+    [listView_ reloadData];
+    NSLog(@"Friends %i", [friends count]);
+    
+    [favlistRequest_ release];
+    favlistRequest_ = nil;
+  } else if ([request isEqual:addFriendRequest_]) {
+    NSDictionary *newFriend = (NSDictionary*)json;
+    [listArray_ addObject:newFriend];
+    [staticList_
+        addName:[self formattedNameString:[newFriend objectForKey:@"name"]]];
+    [selectedArray_ addObject:newFriend];
+    [listView_ reloadData];
+    
+    [addFriendRequest_ release];
+    addFriendRequest_ = nil;
+  }
+}
 
-  [[NSNotificationCenter defaultCenter] removeObserver:self];
+- (void)gatherRequest:(GatherRequest *)request
+    didFailWithReason:(GatherRequestFailureReason)reason {
+  // TODO: Catch failure
 }
 
 - (void)viewDidLoad {
-  [GatherAPI getNamesAndPlaces];
-  [[NSNotificationCenter defaultCenter] 
-      addObserver:self
-         selector:@selector(connectionFinished:)
-             name:@"GETusers/me/favlists/default"
-           object:nil];
   rightContainer_ = [[UIView alloc] initWithFrame:CGRectMake(162, 
                                                             0, 
                                                             158,
@@ -130,6 +145,12 @@
   [super viewDidLoad];
 }
 
+- (void)viewDidAppearInSlideNavigation {
+  [super viewDidAppearInSlideNavigation];
+  favlistRequest_ =
+      [[self.ctx.server requestFavlistForCurrentUserWithSlug:@"default"
+                                                withDelegate:self] retain];
+}
 
 - (void)viewDidUnload {
   [super viewDidUnload];
@@ -247,13 +268,10 @@
     phoneNumber = [NSString stringWithFormat:@""];
   }
 
-  [GatherAPI addFriend:name withNumber:phoneNumber];
-  [[NSNotificationCenter defaultCenter]
-      addObserver:self
-         selector:@selector(friendAdded:)
-             name:@"POST/users/me/favlists/default/friends"
-           object:nil];
-  
+  addFriendRequest_ = [[self.ctx.server requestAddFriendWithName:name
+                                                 withPhoneNumber:phoneNumber
+                                               toFavlistWithSlug:@"default"
+                                                    withDelegate:self] retain];
   NSLog(@"Name:%@ Number:%@", name, phoneNumber);
   [self dismissModalViewControllerAnimated:YES];
   return NO;

@@ -1,12 +1,18 @@
-#import "ValidateVC.h"
-#import "SessionData.h"
-#import "GatherAPI.h"
-#import "SBJson.h"
-#import "NSObject+SBJson.h"
-#import "GatherAppState.h"
+#import "AppContext.h"
 #import "FinalizeVC.h"
+#import "GatherAppState.h"
+#import "GatherRequest.h"
+#import "GatherRequestDelegate.h"
+#import "GatherServer.h"
+#import "NSObject+SBJson.h"
+#import "SBJson.h"
+#import "SessionData.h"
+#import "SlideViewController.h"
+#import "SlideNavigationController.h"
+#import "ValidateVC.h"
 
 @implementation ValidateVC
+@synthesize ctx = ctx_;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil
                bundle:(NSBundle *)nibBundleOrNil {
@@ -18,6 +24,11 @@
 }
 
 - (void)dealloc {
+  [ctx_ release];
+  [tokenRequest_ release];
+  [message_ release];
+  [verificationLabel_ release];
+  [verificationField_ release];
   [super dealloc];
 }
 
@@ -47,33 +58,18 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
+- (void)viewDidAppearInSlideNavigation {
+  [super viewDidAppearInSlideNavigation];
+  
   if (!requested_) {
-    NSString * udid =
-        [[[UIDevice currentDevice] uniqueIdentifier]
-            stringByReplacingOccurrencesOfString:@"-"
-                                      withString:@""];
-      
-    NSMutableDictionary * dict =
-        [[[NSMutableDictionary alloc] init] autorelease];
-    [dict setObject:[[SessionData sharedSessionData] phoneNumber]
-             forKey:@"phone_number"];
-    [dict setObject:udid
-             forKey:@"device_udid"];
-    [dict setObject:[[UIDevice currentDevice] model]
-             forKey:@"device_type"];
-    [GatherAPI request:@"tokens"
-         requestMethod:@"POST"
-           requestData:dict];
+    NSString *phoneNumber = ctx_.server.sessionData.phoneNumber;
     
-    [[NSNotificationCenter defaultCenter]
-        addObserver:self
-           selector:@selector(connectionFinished:)
-               name:@"POSTtokens"
-             object:nil];
+    tokenRequest_ =
+        [[ctx_.server requestTokenWithPhoneNumber:phoneNumber
+                                     withDelegate:self] retain];
+    requested_ = YES;
     
     message_.text = kCommunicatingText;
-    requested_ = YES;
   }
     
   if ([message_.text isEqualToString:kEnterVerificationText] ||
@@ -86,29 +82,25 @@
     [verificationField_ resignFirstResponder];
 }
 
-- (void)connectionFinished:(NSNotification*)notification {
-    NSMutableDictionary * dict = (NSMutableDictionary *)[notification userInfo];
-    NSMutableURLRequest * req = [dict objectForKey:@"request"];
-    
-  if ([GatherAPI request:req isCallToMethod:@"tokens"]) {
-    NSString * str =
-        [[NSString alloc] initWithData:[dict objectForKey:@"data"]
-                              encoding:NSUTF8StringEncoding];
-    id json = [str JSONValue];
-    if ([json objectForKey:@"token"] != nil)
-    {
-      [[SessionData sharedSessionData] setToken:[json objectForKey:@"token"]];
-      
-      [[[UIApplication sharedApplication] delegate]
-          setAppState:kGatherAppStateLoggedOutNeedsVerification];
+- (void)gatherRequest:(GatherRequest *)request
+   didSucceedWithJSON:(id)json {
+  NSLog(@"Deed it!");
+  if ([request isEqual:tokenRequest_]) {
+    if ([json objectForKey:@"token"] != nil) {
+      ctx_.server.sessionData.token = [json objectForKey:@"token"];
+      ctx_.appState = kGatherAppStateLoggedOutNeedsVerification;
       message_.text = kEnterVerificationText;
       [verificationField_ becomeFirstResponder];
+      [tokenRequest_ release];
+      tokenRequest_ = nil;
     }
-    
-    NSLog(@"%@", str);
-    [str release];
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
   }
+}
+
+- (void)gatherRequest:(GatherRequest *)request
+    didFailWithReason:(GatherRequestFailureReason)reason {
+  // TODO: Catch failure
+  NSLog(@"FAILED!");
 }
 
 - (void)externalVerification:(NSNotification*)notification {
@@ -141,31 +133,32 @@
   }
 }
 
-- (void) verificationDisplayFilter:(NSString *) post {
+- (void) verificationDisplayFilter:(NSString *)post {
   verificationLabel_.text = post;
     
   if ([post length] == 6) {
     message_.text = kSwipeLeftText;
     
-    [[[UIApplication sharedApplication] delegate]
-        setAppState:kGatherAppStateLoggedOutHasVerification];
+    ctx_.appState = kGatherAppStateLoggedOutHasVerification;
     
     verificationLabel_.textColor = [UIColor colorWithRed:1.0
                                                    green:93.0/255.0
                                                     blue:53.0/255.0
                                                    alpha:1.0];
     
-    [[SessionData sharedSessionData] setVerification:post];
+    ctx_.server.sessionData.verification = post;
     
     FinalizeVC *new =
-       [[FinalizeVC alloc] initWithNibName:@"FinalizeVC" bundle:nil];
-    [[[[UIApplication sharedApplication] delegate] slideView] addNewPage:new];
+       [[FinalizeVC alloc] initWithNibName:@"FinalizeVC"
+                                    bundle:nil];
+    new.ctx = self.ctx;
+    [self.slideNavigation addNewPage:new];
+    [new release];
   } else {
     message_.text = kEnterVerificationText;
-    [[[UIApplication sharedApplication] delegate]
-        setAppState:kGatherAppStateLoggedOutNeedsVerification];
+    ctx_.appState = kGatherAppStateLoggedOutNeedsVerification;
     
-    [[SessionData sharedSessionData] setVerification:nil];
+    ctx_.server.sessionData.verification = nil;
     verificationLabel_.textColor = [UIColor blackColor];
   }
 }

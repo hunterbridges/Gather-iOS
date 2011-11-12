@@ -2,17 +2,27 @@
 #import <AddressBookUI/AddressBookUI.h>
 #import <UIKit/UIKit.h>
 
+#import "AppContext.h"
+#import "GatherRequestDelegate.h"
+#import "SlideViewController.h"
 #import "StaticListView.h"
 
-@interface SplitListViewController : UIViewController <UITableViewDelegate,
-    UITableViewDataSource, ABPeoplePickerNavigationControllerDelegate> {
-    UITableView *listView_;
-    NSMutableArray *listArray_;
-    NSMutableArray *selectedArray_;
-    UIView *rightContainer_;
-    StaticListView *staticList_;
-    
+@class GatherRequest;
+@interface SplitListViewController : SlideViewController <UITableViewDelegate,
+    UITableViewDataSource, ABPeoplePickerNavigationControllerDelegate,
+    GatherRequestDelegate> {
+  UITableView *listView_;
+  NSMutableArray *listArray_;
+  NSMutableArray *selectedArray_;
+  UIView *rightContainer_;
+  StaticListView *staticList_;
+      
+  AppContext *ctx_;
+  GatherRequest *favlistRequest_;
+  GatherRequest *addFriendRequest_;
 }
 
 - (NSString*)formattedNameString:(NSString*)name;
+
+@property (nonatomic, retain) AppContext *ctx;
 @end

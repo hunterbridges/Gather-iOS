@@ -1,11 +1,15 @@
 #import "GatherAppDelegate.h"
 #import "GatherAppState.h"
+#import "GatherServer.h"
 #import "LoginVC.h"
 #import "PhoneNumberFormatter.h"
 #import "SessionData.h"
+#import "SlideNavigationController.h"
+#import "SlideViewController.h"
 #import "ValidateVC.h"
 
 @implementation LoginVC
+@synthesize ctx = ctx_;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil
                bundle:(NSBundle *)nibBundleOrNil {
@@ -17,6 +21,10 @@
 }
 
 - (void)dealloc {
+  [ctx_ release];
+  [phoneNumberField_ release];
+  [instructionsLabel_ release];
+  [phoneNumberLabel_ release];
   [super dealloc];
 }
 
@@ -41,8 +49,8 @@
     // e.g. self.myOutlet = nil;
 }
 
-- (void) viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
+- (void) viewDidAppearInSlideNavigation {
+    [super viewDidAppearInSlideNavigation];
     [phoneNumberField_ becomeFirstResponder];
 }
 
@@ -80,23 +88,24 @@
                                                      blue:53.0/255.0
                                                     alpha:1.0];
       
-      [[SessionData sharedSessionData] setPhoneNumber:post];
-      [[[UIApplication sharedApplication] delegate]
-          setAppState:kGatherAppStateLoggedOutHasPhoneNumber];
+      [ctx_.server.sessionData setPhoneNumber:post];
+      ctx_.appState = kGatherAppStateLoggedOutHasPhoneNumber;
       
       ValidateVC *new = [[ValidateVC alloc] initWithNibName:@"ValidateVC"
                                                      bundle:nil];
-      // TODO: Why accessing slideView on app delegate directly here?
-      [[[[UIApplication sharedApplication] delegate] slideView] addNewPage:new];
+      new.ctx = ctx_;
+      
+      [self.slideNavigation addNewPage:new];
+      [new release];
     } else {
       instructionsLabel_.text = @"HELLO. WHAT IS YOUR CELL PHONE NUMBER?";
       phoneNumberLabel_.textColor = [UIColor blackColor];
         
-      [[[UIApplication sharedApplication] delegate]
-          setAppState:kGatherAppStateLoggedOutNeedsPhoneNumber];
+      ctx_.appState = kGatherAppStateLoggedOutNeedsPhoneNumber;
       
-      [[SessionData sharedSessionData] setPhoneNumber:nil];
+      [ctx_.server.sessionData setPhoneNumber:nil];
     }
+    [pn release];
     return TRUE;
   }
 }
