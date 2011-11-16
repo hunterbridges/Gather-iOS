@@ -16,10 +16,12 @@
 		48869FC213F4B976000B4812 /* PlusButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 48869FC113F4B976000B4812 /* PlusButtonView.m */; };
 		48AF6BF113C8F6510062B769 /* SlideNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48AF6BF013C8F6510062B769 /* SlideNavigationController.m */; };
 		48BC159013F0AB5A00E14779 /* SplitListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48BC158F13F0AB5A00E14779 /* SplitListViewController.m */; };
+		C147532514704A21007A8375 /* GolfballGrippies.m in Sources */ = {isa = PBXBuildFile; fileRef = C147532414704A21007A8375 /* GolfballGrippies.m */; };
 		C17DF6B2146F1BD400DF8C4B /* SlideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C17DF6B1146F1BD400DF8C4B /* SlideViewController.m */; };
 		C19A0E5F1465FBB20008E542 /* AppContext.m in Sources */ = {isa = PBXBuildFile; fileRef = C19A0E5E1465FBB20008E542 /* AppContext.m */; };
 		C19A0E621465FC120008E542 /* GatherRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C19A0E611465FC120008E542 /* GatherRequest.m */; };
 		C19A0E6914661CC60008E542 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C19A0E6814661CC60008E542 /* Settings.bundle */; };
+		C1A20EA11470D1E2001A8710 /* DoubleResponderScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A20EA01470D1E2001A8710 /* DoubleResponderScrollView.m */; };
 		C1C2C01813C8C48C00CD103D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1C2C01713C8C48C00CD103D /* UIKit.framework */; };
 		C1C2C01A13C8C48C00CD103D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1C2C01913C8C48C00CD103D /* Foundation.framework */; };
 		C1C2C01C13C8C48C00CD103D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1C2C01B13C8C48C00CD103D /* CoreGraphics.framework */; };
@@ -71,10 +73,12 @@
 		48869FBD13F4B8F9000B4812 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		48869FC013F4B976000B4812 /* PlusButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlusButtonView.h; sourceTree = "<group>"; };
 		48869FC113F4B976000B4812 /* PlusButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlusButtonView.m; sourceTree = "<group>"; };
-		48AF6BEF13C8F6510062B769 /* SlideNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; path = SlideNavigationController.h; sourceTree = "<group>"; };
+		48AF6BEF13C8F6510062B769 /* SlideNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideNavigationController.h; sourceTree = "<group>"; };
 		48AF6BF013C8F6510062B769 /* SlideNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlideNavigationController.m; sourceTree = "<group>"; };
 		48BC158E13F0AB5A00E14779 /* SplitListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplitListViewController.h; sourceTree = "<group>"; };
 		48BC158F13F0AB5A00E14779 /* SplitListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplitListViewController.m; sourceTree = "<group>"; };
+		C147532314704A21007A8375 /* GolfballGrippies.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GolfballGrippies.h; sourceTree = "<group>"; };
+		C147532414704A21007A8375 /* GolfballGrippies.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GolfballGrippies.m; sourceTree = "<group>"; };
 		C17DF6B0146F1BD300DF8C4B /* SlideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SlideViewController.h; path = iPhone/SlideViewController.h; sourceTree = "<group>"; };
 		C17DF6B1146F1BD400DF8C4B /* SlideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SlideViewController.m; path = iPhone/SlideViewController.m; sourceTree = "<group>"; };
 		C19A0E5D1465FBB20008E542 /* AppContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppContext.h; path = Common/AppContext.h; sourceTree = "<group>"; };
@@ -83,6 +87,8 @@
 		C19A0E611465FC120008E542 /* GatherRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GatherRequest.m; path = Common/GatherRequest.m; sourceTree = "<group>"; };
 		C19A0E6714660C7A0008E542 /* GatherRequestDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GatherRequestDelegate.h; path = Common/GatherRequestDelegate.h; sourceTree = "<group>"; };
 		C19A0E6814661CC60008E542 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		C1A20E9F1470D1E2001A8710 /* DoubleResponderScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoubleResponderScrollView.h; sourceTree = "<group>"; };
+		C1A20EA01470D1E2001A8710 /* DoubleResponderScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoubleResponderScrollView.m; sourceTree = "<group>"; };
 		C1C2C01313C8C48C00CD103D /* Gather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1C2C01713C8C48C00CD103D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C1C2C01913C8C48C00CD103D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -185,6 +191,10 @@
 				48AF6BF013C8F6510062B769 /* SlideNavigationController.m */,
 				C17DF6B0146F1BD300DF8C4B /* SlideViewController.h */,
 				C17DF6B1146F1BD400DF8C4B /* SlideViewController.m */,
+				C147532314704A21007A8375 /* GolfballGrippies.h */,
+				C147532414704A21007A8375 /* GolfballGrippies.m */,
+				C1A20E9F1470D1E2001A8710 /* DoubleResponderScrollView.h */,
+				C1A20EA01470D1E2001A8710 /* DoubleResponderScrollView.m */,
 			);
 			name = "UI Classes";
 			sourceTree = "<group>";
@@ -493,6 +503,8 @@
 				C19A0E5F1465FBB20008E542 /* AppContext.m in Sources */,
 				C19A0E621465FC120008E542 /* GatherRequest.m in Sources */,
 				C17DF6B2146F1BD400DF8C4B /* SlideViewController.m in Sources */,
+				C147532514704A21007A8375 /* GolfballGrippies.m in Sources */,
+				C1A20EA11470D1E2001A8710 /* DoubleResponderScrollView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

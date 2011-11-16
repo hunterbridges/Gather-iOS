@@ -1,26 +1,30 @@
+#import "DoubleResponderScrollView.h"
 #import "SlideNavigationController.h"
 #import "SlideViewController.h"
 
 @implementation SlideNavigationController
+@synthesize scrollView = scrollView_;
 
 - (id)init {
   self = [super init];
   if (self) {
-    slideView_ = [[UIScrollView alloc] initWithFrame:self.view.frame];
-    slideView_.scrollEnabled = YES;
-    slideView_.pagingEnabled = YES;
-    slideView_.directionalLockEnabled = YES;
-    slideView_.showsVerticalScrollIndicator = NO;
-    slideView_.showsHorizontalScrollIndicator = NO;
-    slideView_.delegate = self;
-    slideView_.backgroundColor = [UIColor blackColor];
-    slideView_.autoresizesSubviews = YES;
-    slideView_.contentSize = CGSizeMake(320, 480);
-    slideView_.frame = CGRectMake(0, 0, 320, 480);
+    scrollView_ =
+        [[DoubleResponderScrollView alloc] initWithFrame:self.view.frame];
+    scrollView_.scrollEnabled = YES;
+    scrollView_.pagingEnabled = YES;
+    scrollView_.directionalLockEnabled = YES;
+    scrollView_.showsVerticalScrollIndicator = NO;
+    scrollView_.showsHorizontalScrollIndicator = NO;
+    scrollView_.delegate = self;
+    scrollView_.backgroundColor = [UIColor blackColor];
+    scrollView_.autoresizesSubviews = YES;
+    scrollView_.contentSize = CGSizeMake(320, 480);
+    scrollView_.frame = CGRectMake(0, 0, 320, 480);
+    scrollView_.delaysContentTouches = NO;
     scrollStop_ = 0;
     
     navigationStack_ = [[NSMutableArray alloc] init];
-    [self.view addSubview:slideView_];
+    [self.view addSubview:scrollView_];
     currentPage_ = -1;
   }
   return self;
@@ -31,7 +35,7 @@
 }
 
 - (int)currentIndex {
-  int pageNum = (slideView_.contentOffset.x / 320);
+  int pageNum = (scrollView_.contentOffset.x / 320);
   return pageNum;
 }
 
@@ -41,7 +45,11 @@
 
 - (void)setScrollStop:(int)atPage {
   scrollStop_ = atPage;
-  slideView_.contentSize = CGSizeMake(((atPage * 320)+1), 480);
+  scrollView_.contentSize = CGSizeMake(((atPage * 320)+1), 480);
+}
+
+- (void)setGrabberRect:(CGRect)grabberRect {
+  scrollView_.grabberRect = grabberRect;
 }
 
 - (void)resetScrollStop {
@@ -55,9 +63,9 @@
                                   320,
                                   480);
   newPage.slideNavigation = self;
-  [slideView_ addSubview:newPage.view];
+  [scrollView_ addSubview:newPage.view];
 
-  slideView_.contentSize =
+  scrollView_.contentSize =
       CGSizeMake((([navigationStack_ count] * 320) + 320),
                  480);
   [navigationStack_ addObject:newPage];
@@ -89,13 +97,13 @@
     [navigationStack_ removeAllObjects];
     scrollStop_ = 0;
     [self addNewPage:newPage];
-    [slideView_ setContentOffset:CGPointMake(0, 0)
+    [scrollView_ setContentOffset:CGPointMake(0, 0)
                         animated:YES];
   }
 }
 
 - (void)scrollToPage:(int)page {
-  [slideView_ setContentOffset:CGPointMake((320 * (page - 1)), 0)
+  [scrollView_ setContentOffset:CGPointMake((320 * (page - 1)), 0)
                       animated:YES];
 }
 
@@ -111,9 +119,15 @@
     [self scrollToPage:1];
 }
 
-- (void)removePage:(int)page {
+- (void)removeLastPage {
   // TODO
   NSLog(@"Remove Page Called");
+  SlideViewController *svc = [navigationStack_ lastObject];
+  [svc.view removeFromSuperview];
+  [navigationStack_ removeObject:svc];
+  scrollView_.contentSize =
+      CGSizeMake(([navigationStack_ count] * 320),
+                 480);
 }
 
 - (void)removeAllPages {
@@ -123,7 +137,7 @@
 
 
 - (void)updateCurrentPageBasedOnScroll {
-  int pageNum = (((slideView_.contentOffset.x+10)/320)+1);
+  int pageNum = (((scrollView_.contentOffset.x+10)/320)+1);
   [self setCurrentPage:pageNum];
 }
 
@@ -157,8 +171,8 @@
         [navigationStack_ objectAtIndex:0];
     [keepPage viewDidAppear:YES];
     [keepPage.view setFrame:CGRectMake(0, 0, 320, 480)];
-    [slideView_ setContentOffset:CGPointMake(0, 0) animated:NO];
-    slideView_.contentSize = CGSizeMake(320, 480);
+    [scrollView_ setContentOffset:CGPointMake(0, 0) animated:NO];
+    scrollView_.contentSize = CGSizeMake(320, 480);
     [removePage_.view removeFromSuperview];
     [removePage_ viewDidDisappear:YES];
 
@@ -168,6 +182,8 @@
 }
 
 - (void)dealloc {
+  [scrollView_ release];
+  [navigationStack_ release];
   [super dealloc];
 }
 

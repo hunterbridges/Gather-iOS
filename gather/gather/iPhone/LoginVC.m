@@ -1,6 +1,7 @@
 #import "GatherAppDelegate.h"
 #import "GatherAppState.h"
 #import "GatherServer.h"
+#import "GolfballGrippies.h"
 #import "LoginVC.h"
 #import "PhoneNumberFormatter.h"
 #import "SessionData.h"
@@ -25,6 +26,7 @@
   [phoneNumberField_ release];
   [instructionsLabel_ release];
   [phoneNumberLabel_ release];
+  [grippies_ release];
   [super dealloc];
 }
 
@@ -37,10 +39,16 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   [phoneNumberLabel_ setFont:[UIFont fontWithName:@"UniversLTStd-UltraCn"
-                                             size:60]];
+                                             size:50]];
 
   [instructionsLabel_ setFont:[UIFont fontWithName:@"UniversLTStd-UltraCn"
                                               size:20]];
+  
+  grippies_ =
+      [[GolfballGrippies alloc] initWithFrame:CGRectMake(64, 174, 192, 60)];
+  grippies_.currentAnimation = kGolfballGrippiesAnimationNone;
+  grippies_.enabled = NO;
+  [self.view addSubview:grippies_];
 }
 
 - (void)viewDidUnload {
@@ -50,8 +58,12 @@
 }
 
 - (void) viewDidAppearInSlideNavigation {
-    [super viewDidAppearInSlideNavigation];
-    [phoneNumberField_ becomeFirstResponder];
+  [super viewDidAppearInSlideNavigation];
+  [phoneNumberField_ becomeFirstResponder];
+}
+
+- (void)viewDidDisappearInSlideNavigation {
+  [self.slideNavigation setGrabberRect:CGRectZero];
 }
 
 - (void) viewDidDisappear:(BOOL)animated {
@@ -95,6 +107,10 @@
                                                      bundle:nil];
       new.ctx = ctx_;
       
+      grippies_.enabled = YES;
+      grippies_.currentAnimation = kGolfballGrippiesAnimationLeft;
+      
+      [self.slideNavigation setGrabberRect:grippies_.frame];
       [self.slideNavigation addNewPage:new];
       [new release];
     } else {
@@ -103,11 +119,19 @@
         
       ctx_.appState = kGatherAppStateLoggedOutNeedsPhoneNumber;
       
+      grippies_.enabled = NO;
+      grippies_.currentAnimation = kGolfballGrippiesAnimationNone;
+      
       [ctx_.server.sessionData setPhoneNumber:nil];
+      if (self.slideNavigation.pageCount > 1) {
+        [self.slideNavigation setGrabberRect:CGRectZero];
+        [self.slideNavigation removeLastPage];
+      }
     }
     [pn release];
     return TRUE;
   }
 }
+
 
 @end

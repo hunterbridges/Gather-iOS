@@ -55,7 +55,7 @@
           [[json objectForKey:@"id"] intValue];
       
       self.ctx.server.sessionData.loggedIn = YES;
-      // [self.ctx.server.sessionData saveSession];
+      //[self.ctx.server.sessionData saveSession];
       
       [[NSNotificationCenter defaultCenter]
           postNotificationName:@"authStateDidChange"
