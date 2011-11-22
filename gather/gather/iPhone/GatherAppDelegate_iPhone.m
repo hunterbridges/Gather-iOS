@@ -1,4 +1,5 @@
 #import "AppContext.h"
+#import "FontManager.h"
 #import "GatherAppDelegate_iPhone.h"
 #import "GatherServer.h"
 #import "LoginVC.h"
@@ -20,8 +21,6 @@
 
 - (BOOL)application:(UIApplication *)application
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-  NSLog(@"Iphone Launched");
-  
   NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
   NSDictionary *appDefaults =
   [NSDictionary dictionaryWithObject:@"http://dev.gather.mdor.co/"
@@ -30,8 +29,11 @@
   [defaults synchronize];
   
   GatherServer *server = [[GatherServer alloc] init];
-  ctx_ = [[AppContext alloc] initWithServer:server];
+  FontManager *fontManager = [[FontManager alloc] init];
+  ctx_ = [[AppContext alloc] initWithServer:server
+                            withFontManager:fontManager];
   [server release];
+  [fontManager release];
   
   slideView_ = [[SlideNavigationController alloc] init];
   [self.window addSubview:slideView_.view];
@@ -73,17 +75,18 @@
 }
 
 - (void)resetNavigationForAuthState {
-  NSLog(@"Resetting Naviation State");
   if (![ctx_.server.sessionData loggedIn]) {
     LoginVC *newPage = [[LoginVC alloc] initWithNibName:@"LoginVC" bundle:nil];
     newPage.ctx = ctx_;
     [slideView_ resetWithPage:newPage];
     [self setAppState:kGatherAppStateLoggedOutNeedsPhoneNumber];
+    [newPage release];
   } else {
     SplitListViewController *newSplit = [[SplitListViewController alloc] init];
     newSplit.ctx = ctx_;
     [slideView_ resetWithPage:newSplit];
     [self setAppState:kGatherAppStateLoggedIn];
+    [newSplit release];
   }
 }
 

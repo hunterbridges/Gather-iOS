@@ -3,6 +3,7 @@
 #import "GatherRequestDelegate.h"
 #import "SlideViewController.h"
 
+// TODO: Move to strings file
 static NSString * kFinalizingText = @"LOGGING IN...";
 
 @class AppContext;

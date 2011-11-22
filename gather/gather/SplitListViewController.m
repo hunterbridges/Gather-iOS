@@ -1,12 +1,18 @@
 #import "AppContext.h"
 #import "ArrowView.h"
 #import "ExView.h"
+#import "FontManager.h"
 #import "GatherServer.h"
 #import "PhoneNumberFormatter.h"
 #import "PlusButtonView.h"
 #import "SBJson.h"
-#import "SplitListCellView.h"
+#import "SplitListCell.h"
 #import "SplitListViewController.h"
+#import "UIColor+Gather.h"
+
+@interface SplitListViewController ()
+- (void)sortFriends;
+@end
 
 @implementation SplitListViewController
 @synthesize ctx = ctx_;
@@ -25,7 +31,7 @@
   [listArray_ release];
   [selectedArray_ release];
   [rightContainer_ release];
-  [staticList_ release];
+  [whoList_ release];
   [ctx_ release];
   [favlistRequest_ release];
   [addFriendRequest_ release];
@@ -39,7 +45,6 @@
 #pragma mark - View lifecycle
 
 - (void) getContacts:(id)sender {
-  NSLog(@"Button Pressed");
   ABPeoplePickerNavigationController *picker =
       [[ABPeoplePickerNavigationController alloc] init];
 	
@@ -49,42 +54,34 @@
 	[picker release];
 }
 
-- (void)connectionFinished:(NSNotification*)notification {
-  NSMutableDictionary * dict = (NSMutableDictionary *)[notification userInfo];
-  NSString * str =
-      [[NSString alloc] initWithData:[dict objectForKey:@"data"]
-                            encoding:NSUTF8StringEncoding];
-  id json = [[str JSONValue] objectForKey:@"friends"];
-  NSArray *friends = (NSArray*)json;
-  [listArray_ addObjectsFromArray:friends];
-  [listView_ reloadData];
-  NSLog(@"Friends %i", [friends count]);
-  NSLog(@"%@", str);
-
-  [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
 - (void)gatherRequest:(GatherRequest *)request didSucceedWithJSON:(id)json {
   if ([request isEqual:favlistRequest_]) {
     id fJson = [json objectForKey:@"friends"];
     NSArray *friends = (NSArray*)fJson;
     [listArray_ addObjectsFromArray:friends];
+    [self sortFriends];
     [listView_ reloadData];
-    NSLog(@"Friends %i", [friends count]);
     
     [favlistRequest_ release];
     favlistRequest_ = nil;
   } else if ([request isEqual:addFriendRequest_]) {
     NSDictionary *newFriend = (NSDictionary*)json;
     [listArray_ addObject:newFriend];
-    [staticList_
-        addName:[self formattedNameString:[newFriend objectForKey:@"name"]]];
+    [whoList_ addName:[newFriend objectForKey:@"name"]];
     [selectedArray_ addObject:newFriend];
+    [self sortFriends];
     [listView_ reloadData];
     
     [addFriendRequest_ release];
     addFriendRequest_ = nil;
   }
+}
+
+- (void)sortFriends {
+  [listArray_ sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+    return [[obj1 objectForKey:@"name"] compare:[obj2 objectForKey:@"name"]
+                                        options:NSCaseInsensitiveSearch];
+  }];
 }
 
 - (void)gatherRequest:(GatherRequest *)request
@@ -93,9 +90,11 @@
 }
 
 - (void)viewDidLoad {
-  rightContainer_ = [[UIView alloc] initWithFrame:CGRectMake(162, 
+  currentState_ = kSplitListViewControllerWhoState;
+  
+  rightContainer_ = [[UIView alloc] initWithFrame:CGRectMake(160, 
                                                             0, 
-                                                            158,
+                                                            160,
                                                             460)];
   rightContainer_.backgroundColor = [UIColor colorWithWhite:0.88 alpha:1];
   
@@ -111,25 +110,17 @@
   listView_.separatorStyle = UITableViewCellSeparatorStyleNone;
   listView_.showsVerticalScrollIndicator = NO;
   listView_.showsHorizontalScrollIndicator = NO;
-  listView_.backgroundColor = [UIColor colorWithWhite:0.1 alpha:1];
+  listView_.backgroundColor = [UIColor selectionCellUnselectedBackgroundColor];
   [self.view addSubview:listView_];
   
-  staticList_ = [[StaticListView alloc] initWithFrame:CGRectMake(20,
-                                                                60,
-                                                                100,
-                                                                300)];
-  [rightContainer_ addSubview:staticList_];
-  
-  UILabel *top = [[UILabel alloc] initWithFrame:CGRectMake(20,
-                                                           20,
-                                                           100,
-                                                           30)];
-  // TODO: Centralize font management
-  [top setFont:[UIFont fontWithName:@"UniversLTStd-UltraCn" size:24]];
-  top.backgroundColor = [UIColor clearColor];
-  top.textColor = [UIColor colorWithRed:0.25 green:0.75 blue:0.44 alpha:1];
-  top.text = @"People";
-  [rightContainer_ addSubview:top];
+  whoList_ = [[StaticListView alloc] initWithContext:ctx_
+                                              withFrame:CGRectMake(0,
+                                                                   0,
+                                                                   160,
+                                                                   460)];
+  whoList_.title = @"WHO?";
+  whoList_.titleColor = [UIColor whoColor];
+  [rightContainer_ addSubview:whoList_];
   
   PlusButtonView *plusButton =
       [PlusButtonView buttonWithType:UIButtonTypeCustom];
@@ -140,7 +131,7 @@
        forControlEvents:UIControlEventTouchUpInside];
   [self.view addSubview:plusButton];
   
-  listArray_ = [[NSMutableArray alloc] init];
+  listArray_ = [[NSMutableOrderedSet alloc] init];
   selectedArray_ = [[NSMutableArray alloc] init];
   [super viewDidLoad];
 }
@@ -177,59 +168,50 @@
     return 65;
 }
 
-- (NSString*)formattedNameString:(NSString*)name{
-  NSRange sep = [name rangeOfString:@" "];
-
-  if (sep.location != NSNotFound) {
-      return [name substringToIndex:(sep.location + 2)];
-  } else{
-      return name; 
-  }
-}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView 
 		 cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   static NSString *CellIdentifier = @"Cell";
-  UITableViewCell *cell = 
+  SplitListCell *cell = 
       [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 
-  SplitListCellView *newCell;
-
   if (cell == nil) {
-    cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle 
-                                   reuseIdentifier:CellIdentifier] autorelease];
-    newCell = [[SplitListCellView alloc] init];
-    newCell.tag = 447;
-    [cell.contentView addSubview:newCell];
+    cell = [[[SplitListCell alloc] initWithContext:ctx_
+        withReuseIdentifier:CellIdentifier] autorelease];
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-  } else {
-    newCell = (SplitListCellView*)[cell.contentView viewWithTag:447];
   }
   
-  [newCell setText:[self formattedNameString:
-                       [[listArray_ objectAtIndex:indexPath.row] 
-                           objectForKey:@"name"]]
-          selected:[selectedArray_ containsObject:
-                       [listArray_ objectAtIndex:indexPath.row]]];
+  [cell setText:[[listArray_ objectAtIndex:indexPath.row] objectForKey:@"name"]
+       selected:[selectedArray_ containsObject:
+                    [listArray_ objectAtIndex:indexPath.row]]];
   return cell;
 }
 
 - (void)tableView:(UITableView *)tableView
     didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-  SplitListCellView *newCell;
-  newCell = (SplitListCellView *)[cell.contentView viewWithTag:447];
+  SplitListCell *cell =
+      (SplitListCell *)[tableView cellForRowAtIndexPath:indexPath];
 
-  if (newCell.isSelected) {
-    [staticList_ removeName:newCell.label.text];
+  if (cell.isSelected) {
+    [whoList_ removeName:cell.name];
     [selectedArray_ removeObject:[listArray_ objectAtIndex:indexPath.row]];
   } else{
-    [staticList_ addName:newCell.label.text];
+    [whoList_ addName:cell.name];
     [selectedArray_ addObject:[listArray_ objectAtIndex:indexPath.row]];
   }
   
-  [newCell switchSelection];
+  [cell switchSelection];
+}
+
+- (BOOL)tableView:(UITableView *)tableView
+canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+  return YES;
+}
+
+- (void)tableView:(UITableView *)tableView
+    commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
+    forRowAtIndexPath:(NSIndexPath *)indexPath {
+  
 }
 
 #pragma mark Address Picker Delegate
@@ -247,7 +229,7 @@
       (NSString *)ABRecordCopyValue(person, kABPersonFirstNameProperty);
   NSString *lastName =
       (NSString *)ABRecordCopyValue(person, kABPersonLastNameProperty);	
-  if (lastName == NULL) {
+  if (lastName == nil) {
     name = firsName;
   } else {
     name = [firsName stringByAppendingFormat:@" %@", lastName];

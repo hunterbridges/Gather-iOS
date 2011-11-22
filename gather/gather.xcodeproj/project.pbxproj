@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		4833FDCB13F1673F00943A3D /* ArrowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4833FDCA13F1673F00943A3D /* ArrowView.m */; };
 		4833FDD513F16D7400943A3D /* ExView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4833FDD413F16D7300943A3D /* ExView.m */; };
-		4833FDDE13F18D5100943A3D /* SplitListCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4833FDDD13F18D5100943A3D /* SplitListCellView.m */; };
+		4833FDDE13F18D5100943A3D /* SplitListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4833FDDD13F18D5100943A3D /* SplitListCell.m */; };
 		48869FB413F49C66000B4812 /* StaticListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 48869FB313F49C66000B4812 /* StaticListView.m */; };
 		48869FBE13F4B8F9000B4812 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48869FBC13F4B8F9000B4812 /* AddressBook.framework */; };
 		48869FBF13F4B8F9000B4812 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48869FBD13F4B8F9000B4812 /* AddressBookUI.framework */; };
@@ -34,7 +34,6 @@
 		C1C2C03413C8C48D00CD103D /* MainWindow_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1C2C03213C8C48D00CD103D /* MainWindow_iPhone.xib */; };
 		C1C2C03813C8C48D00CD103D /* GatherAppDelegate_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = C1C2C03713C8C48D00CD103D /* GatherAppDelegate_iPad.m */; };
 		C1C2C03B13C8C48D00CD103D /* MainWindow_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1C2C03913C8C48D00CD103D /* MainWindow_iPad.xib */; };
-		C1EB58EA13CB6B5600F156DB /* ConnectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C1EB58E513CB6B5600F156DB /* ConnectionManager.m */; };
 		C1EB58EB13CB6B5600F156DB /* GatherServer.m in Sources */ = {isa = PBXBuildFile; fileRef = C1EB58E713CB6B5600F156DB /* GatherServer.m */; };
 		C1EB58EC13CB6B5600F156DB /* IndexedURLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = C1EB58E913CB6B5600F156DB /* IndexedURLConnection.m */; };
 		C1EB5C3013CB6D7100F156DB /* NSObject+SBJson.m in Sources */ = {isa = PBXBuildFile; fileRef = C1EB5C1813CB6D7100F156DB /* NSObject+SBJson.m */; };
@@ -58,6 +57,10 @@
 		C1EB5C4F13CB847900F156DB /* ValidateVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1EB5C4D13CB847900F156DB /* ValidateVC.xib */; };
 		C1EB5C5513CBB07200F156DB /* FinalizeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C1EB5C5313CBB07100F156DB /* FinalizeVC.m */; };
 		C1EB5C5613CBB07200F156DB /* FinalizeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1EB5C5413CBB07200F156DB /* FinalizeVC.xib */; };
+		CA2A220314746E4F0014E35B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA2A220214746E4E0014E35B /* QuartzCore.framework */; };
+		CA2A22061474A4560014E35B /* UIColor+Gather.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2A22051474A4550014E35B /* UIColor+Gather.m */; };
+		CA2A22091474AB080014E35B /* StringUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2A22081474AB080014E35B /* StringUtils.m */; };
+		CACB13F6147459690044D73C /* FontManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CACB13F5147459690044D73C /* FontManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,8 +68,8 @@
 		4833FDCA13F1673F00943A3D /* ArrowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArrowView.m; sourceTree = "<group>"; };
 		4833FDD313F16D7300943A3D /* ExView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExView.h; sourceTree = "<group>"; };
 		4833FDD413F16D7300943A3D /* ExView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExView.m; sourceTree = "<group>"; };
-		4833FDDC13F18D4F00943A3D /* SplitListCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplitListCellView.h; sourceTree = "<group>"; };
-		4833FDDD13F18D5100943A3D /* SplitListCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplitListCellView.m; sourceTree = "<group>"; };
+		4833FDDC13F18D4F00943A3D /* SplitListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplitListCell.h; sourceTree = "<group>"; };
+		4833FDDD13F18D5100943A3D /* SplitListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplitListCell.m; sourceTree = "<group>"; };
 		48869FB213F49C66000B4812 /* StaticListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaticListView.h; sourceTree = "<group>"; };
 		48869FB313F49C66000B4812 /* StaticListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaticListView.m; sourceTree = "<group>"; };
 		48869FBC13F4B8F9000B4812 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
@@ -107,8 +110,6 @@
 		C1C2C03613C8C48D00CD103D /* GatherAppDelegate_iPad.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GatherAppDelegate_iPad.h; path = iPad/GatherAppDelegate_iPad.h; sourceTree = "<group>"; };
 		C1C2C03713C8C48D00CD103D /* GatherAppDelegate_iPad.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = GatherAppDelegate_iPad.m; path = iPad/GatherAppDelegate_iPad.m; sourceTree = "<group>"; };
 		C1C2C03A13C8C48D00CD103D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = iPad/en.lproj/MainWindow_iPad.xib; sourceTree = "<group>"; };
-		C1EB58E413CB6B5600F156DB /* ConnectionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConnectionManager.h; path = Common/ConnectionManager.h; sourceTree = "<group>"; };
-		C1EB58E513CB6B5600F156DB /* ConnectionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConnectionManager.m; path = Common/ConnectionManager.m; sourceTree = "<group>"; };
 		C1EB58E613CB6B5600F156DB /* GatherServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GatherServer.h; path = Common/GatherServer.h; sourceTree = "<group>"; };
 		C1EB58E713CB6B5600F156DB /* GatherServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GatherServer.m; path = Common/GatherServer.m; sourceTree = "<group>"; };
 		C1EB58E813CB6B5600F156DB /* IndexedURLConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IndexedURLConnection.h; path = Common/IndexedURLConnection.h; sourceTree = "<group>"; };
@@ -153,6 +154,13 @@
 		C1EB5C5213CBB07100F156DB /* FinalizeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FinalizeVC.h; path = iPhone/FinalizeVC.h; sourceTree = "<group>"; };
 		C1EB5C5313CBB07100F156DB /* FinalizeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FinalizeVC.m; path = iPhone/FinalizeVC.m; sourceTree = "<group>"; };
 		C1EB5C5413CBB07200F156DB /* FinalizeVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FinalizeVC.xib; path = iPhone/FinalizeVC.xib; sourceTree = "<group>"; };
+		CA2A220214746E4E0014E35B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		CA2A22041474A4550014E35B /* UIColor+Gather.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+Gather.h"; path = "Common/UIColor+Gather.h"; sourceTree = "<group>"; };
+		CA2A22051474A4550014E35B /* UIColor+Gather.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+Gather.m"; path = "Common/UIColor+Gather.m"; sourceTree = "<group>"; };
+		CA2A22071474AB070014E35B /* StringUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StringUtils.h; path = Common/StringUtils.h; sourceTree = "<group>"; };
+		CA2A22081474AB080014E35B /* StringUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StringUtils.m; path = Common/StringUtils.m; sourceTree = "<group>"; };
+		CACB13F4147459690044D73C /* FontManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FontManager.h; path = Common/FontManager.h; sourceTree = "<group>"; };
+		CACB13F5147459690044D73C /* FontManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FontManager.m; path = Common/FontManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +168,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA2A220314746E4F0014E35B /* QuartzCore.framework in Frameworks */,
 				48869FBE13F4B8F9000B4812 /* AddressBook.framework in Frameworks */,
 				48869FBF13F4B8F9000B4812 /* AddressBookUI.framework in Frameworks */,
 				C1C2C01813C8C48C00CD103D /* UIKit.framework in Frameworks */,
@@ -172,17 +181,11 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		48AF6BDF13C8DEC60062B769 /* UI Classes */ = {
+		48AF6BDF13C8DEC60062B769 /* UI Elements */ = {
 			isa = PBXGroup;
 			children = (
-				48BC158E13F0AB5A00E14779 /* SplitListViewController.h */,
-				48BC158F13F0AB5A00E14779 /* SplitListViewController.m */,
 				48869FC013F4B976000B4812 /* PlusButtonView.h */,
 				48869FC113F4B976000B4812 /* PlusButtonView.m */,
-				48869FB213F49C66000B4812 /* StaticListView.h */,
-				48869FB313F49C66000B4812 /* StaticListView.m */,
-				4833FDDC13F18D4F00943A3D /* SplitListCellView.h */,
-				4833FDDD13F18D5100943A3D /* SplitListCellView.m */,
 				4833FDC913F1673F00943A3D /* ArrowView.h */,
 				4833FDCA13F1673F00943A3D /* ArrowView.m */,
 				4833FDD313F16D7300943A3D /* ExView.h */,
@@ -191,12 +194,12 @@
 				48AF6BF013C8F6510062B769 /* SlideNavigationController.m */,
 				C17DF6B0146F1BD300DF8C4B /* SlideViewController.h */,
 				C17DF6B1146F1BD400DF8C4B /* SlideViewController.m */,
-				C147532314704A21007A8375 /* GolfballGrippies.h */,
-				C147532414704A21007A8375 /* GolfballGrippies.m */,
 				C1A20E9F1470D1E2001A8710 /* DoubleResponderScrollView.h */,
 				C1A20EA01470D1E2001A8710 /* DoubleResponderScrollView.m */,
+				C147532314704A21007A8375 /* GolfballGrippies.h */,
+				C147532414704A21007A8375 /* GolfballGrippies.m */,
 			);
-			name = "UI Classes";
+			name = "UI Elements";
 			sourceTree = "<group>";
 		};
 		C17DF6AE146B1B0500DF8C4B /* Meta */ = {
@@ -204,6 +207,12 @@
 			children = (
 				C19A0E5D1465FBB20008E542 /* AppContext.h */,
 				C19A0E5E1465FBB20008E542 /* AppContext.m */,
+				CACB13F4147459690044D73C /* FontManager.h */,
+				CACB13F5147459690044D73C /* FontManager.m */,
+				CA2A22041474A4550014E35B /* UIColor+Gather.h */,
+				CA2A22051474A4550014E35B /* UIColor+Gather.m */,
+				CA2A22071474AB070014E35B /* StringUtils.h */,
+				CA2A22081474AB080014E35B /* StringUtils.m */,
 			);
 			name = Meta;
 			sourceTree = "<group>";
@@ -229,6 +238,7 @@
 		C1C2C01613C8C48C00CD103D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CA2A220214746E4E0014E35B /* QuartzCore.framework */,
 				48869FBC13F4B8F9000B4812 /* AddressBook.framework */,
 				48869FBD13F4B8F9000B4812 /* AddressBookUI.framework */,
 				C1C2C01713C8C48C00CD103D /* UIKit.framework */,
@@ -270,7 +280,7 @@
 			isa = PBXGroup;
 			children = (
 				C1EB5C4213CB725300F156DB /* VCs */,
-				48AF6BDF13C8DEC60062B769 /* UI Classes */,
+				48AF6BDF13C8DEC60062B769 /* UI Elements */,
 				C1C2C02F13C8C48D00CD103D /* GatherAppDelegate_iPhone.h */,
 				C1C2C03013C8C48D00CD103D /* GatherAppDelegate_iPhone.m */,
 				C1C2C03213C8C48D00CD103D /* MainWindow_iPhone.xib */,
@@ -303,8 +313,6 @@
 			children = (
 				C1EB5C3C13CB6DB800F156DB /* SessionData.h */,
 				C1EB5C3D13CB6DB800F156DB /* SessionData.m */,
-				C1EB58E413CB6B5600F156DB /* ConnectionManager.h */,
-				C1EB58E513CB6B5600F156DB /* ConnectionManager.m */,
 				C1EB58E613CB6B5600F156DB /* GatherServer.h */,
 				C1EB58E713CB6B5600F156DB /* GatherServer.m */,
 				C1EB58E813CB6B5600F156DB /* IndexedURLConnection.h */,
@@ -361,6 +369,7 @@
 			isa = PBXGroup;
 			children = (
 				C1EB5C5113CBA31A00F156DB /* Authentication Flow */,
+				CACB13F11474550D0044D73C /* Creation Flow */,
 			);
 			name = VCs;
 			sourceTree = "<group>";
@@ -397,6 +406,27 @@
 				C1EB5C4913CB79F500F156DB /* PhoneNumberFormatter.m */,
 			);
 			name = PhoneNumberFormatter;
+			sourceTree = "<group>";
+		};
+		CACB13F11474550D0044D73C /* Creation Flow */ = {
+			isa = PBXGroup;
+			children = (
+				48BC158E13F0AB5A00E14779 /* SplitListViewController.h */,
+				48BC158F13F0AB5A00E14779 /* SplitListViewController.m */,
+				CACB13F31474575E0044D73C /* Base UI */,
+			);
+			name = "Creation Flow";
+			sourceTree = "<group>";
+		};
+		CACB13F31474575E0044D73C /* Base UI */ = {
+			isa = PBXGroup;
+			children = (
+				48869FB213F49C66000B4812 /* StaticListView.h */,
+				48869FB313F49C66000B4812 /* StaticListView.m */,
+				4833FDDC13F18D4F00943A3D /* SplitListCell.h */,
+				4833FDDD13F18D5100943A3D /* SplitListCell.m */,
+			);
+			name = "Base UI";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -474,7 +504,6 @@
 				C1C2C03113C8C48D00CD103D /* GatherAppDelegate_iPhone.m in Sources */,
 				C1C2C03813C8C48D00CD103D /* GatherAppDelegate_iPad.m in Sources */,
 				48AF6BF113C8F6510062B769 /* SlideNavigationController.m in Sources */,
-				C1EB58EA13CB6B5600F156DB /* ConnectionManager.m in Sources */,
 				C1EB58EB13CB6B5600F156DB /* GatherServer.m in Sources */,
 				C1EB58EC13CB6B5600F156DB /* IndexedURLConnection.m in Sources */,
 				C1EB5C3013CB6D7100F156DB /* NSObject+SBJson.m in Sources */,
@@ -497,7 +526,7 @@
 				48BC159013F0AB5A00E14779 /* SplitListViewController.m in Sources */,
 				4833FDCB13F1673F00943A3D /* ArrowView.m in Sources */,
 				4833FDD513F16D7400943A3D /* ExView.m in Sources */,
-				4833FDDE13F18D5100943A3D /* SplitListCellView.m in Sources */,
+				4833FDDE13F18D5100943A3D /* SplitListCell.m in Sources */,
 				48869FB413F49C66000B4812 /* StaticListView.m in Sources */,
 				48869FC213F4B976000B4812 /* PlusButtonView.m in Sources */,
 				C19A0E5F1465FBB20008E542 /* AppContext.m in Sources */,
@@ -505,6 +534,9 @@
 				C17DF6B2146F1BD400DF8C4B /* SlideViewController.m in Sources */,
 				C147532514704A21007A8375 /* GolfballGrippies.m in Sources */,
 				C1A20EA11470D1E2001A8710 /* DoubleResponderScrollView.m in Sources */,
+				CACB13F6147459690044D73C /* FontManager.m in Sources */,
+				CA2A22061474A4560014E35B /* UIColor+Gather.m in Sources */,
+				CA2A22091474AB080014E35B /* StringUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

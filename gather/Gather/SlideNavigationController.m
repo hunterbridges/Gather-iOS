@@ -121,7 +121,6 @@
 
 - (void)removeLastPage {
   // TODO
-  NSLog(@"Remove Page Called");
   SlideViewController *svc = [navigationStack_ lastObject];
   [svc.view removeFromSuperview];
   [navigationStack_ removeObject:svc];

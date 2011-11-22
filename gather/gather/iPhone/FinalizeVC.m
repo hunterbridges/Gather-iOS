@@ -1,5 +1,6 @@
 #import "AppContext.h"
 #import "FinalizeVC.h"
+#import "FontManager.h"
 #import "GatherAppState.h"
 #import "GatherRequestDelegate.h"
 #import "GatherServer.h"
@@ -55,7 +56,8 @@
           [[json objectForKey:@"id"] intValue];
       
       self.ctx.server.sessionData.loggedIn = YES;
-      //[self.ctx.server.sessionData saveSession];
+      // TODO: I feel like session shouldn't be saved from the VC.
+      [self.ctx.server.sessionData saveSession];
       
       [[NSNotificationCenter defaultCenter]
           postNotificationName:@"authStateDidChange"
@@ -74,7 +76,7 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  [message_ setFont:[UIFont fontWithName:@"UniversLTStd-UltraCn" size:20]];
+  [message_ setFont:[ctx_.fontManager contentFontWithSize:20]];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:

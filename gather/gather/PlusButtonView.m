@@ -10,6 +10,15 @@
   return self;
 }
 
+- (void)setSelected:(BOOL)selected {
+  if (selected) {
+    self.backgroundColor = [UIColor colorWithWhite:0.20 alpha:1];
+  } else {
+    self.backgroundColor = [UIColor colorWithWhite:0.10 alpha:1];
+  }
+  [super setSelected:selected];
+}
+
 - (void)drawRect:(CGRect)rect {
   CGContextRef context = UIGraphicsGetCurrentContext();
   CGContextSetLineWidth(context, 1);

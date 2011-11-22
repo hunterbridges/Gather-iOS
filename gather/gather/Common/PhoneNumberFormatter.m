@@ -6,6 +6,9 @@
 @implementation PhoneNumberFormatter
 
 - (id)init {
+  self = [super init];
+  if (self)
+  {
     NSArray *usPhoneFormats = [NSArray arrayWithObjects:
                                @"+1 (###) ###-####",
                                @"1 (###) ###-####",
@@ -31,7 +34,8 @@
                          ukPhoneFormats, @"uk",
                          jpPhoneFormats, @"jp",
                          nil];
-    return self;
+  }
+  return self;
 }
 
 - (NSString *)format:(NSString *)phoneNumber withLocale:(NSString *)locale {

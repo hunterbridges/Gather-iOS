@@ -1,5 +1,6 @@
 #import "AppContext.h"
 #import "FinalizeVC.h"
+#import "FontManager.h"
 #import "GatherAppState.h"
 #import "GatherRequest.h"
 #import "GatherRequestDelegate.h"
@@ -9,6 +10,7 @@
 #import "SessionData.h"
 #import "SlideViewController.h"
 #import "SlideNavigationController.h"
+#import "UIColor+Gather.h"
 #import "ValidateVC.h"
 
 @implementation ValidateVC
@@ -41,10 +43,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [verificationLabel_ setFont:
-        [UIFont fontWithName:@"UniversLTStd-UltraCn" size:60]];
-    [message_ setFont:
-        [UIFont fontWithName:@"UniversLTStd-UltraCn" size:20]];
+    [verificationLabel_ setFont:[ctx_.fontManager contentFontWithSize:60]];
+    [message_ setFont:[ctx_.fontManager contentFontWithSize:20]];
     
     [[NSNotificationCenter defaultCenter]
         addObserver:self
@@ -84,7 +84,6 @@
 
 - (void)gatherRequest:(GatherRequest *)request
    didSucceedWithJSON:(id)json {
-  NSLog(@"Deed it!");
   if ([request isEqual:tokenRequest_]) {
     if ([json objectForKey:@"token"] != nil) {
       ctx_.server.sessionData.token = [json objectForKey:@"token"];
@@ -141,10 +140,7 @@
     
     ctx_.appState = kGatherAppStateLoggedOutHasVerification;
     
-    verificationLabel_.textColor = [UIColor colorWithRed:1.0
-                                                   green:93.0/255.0
-                                                    blue:53.0/255.0
-                                                   alpha:1.0];
+    verificationLabel_.textColor = [UIColor whenColor];
     
     ctx_.server.sessionData.verification = post;
     
@@ -159,7 +155,7 @@
     ctx_.appState = kGatherAppStateLoggedOutNeedsVerification;
     
     ctx_.server.sessionData.verification = nil;
-    verificationLabel_.textColor = [UIColor blackColor];
+    verificationLabel_.textColor = [UIColor darkerTextColor];
   }
 }
 @end

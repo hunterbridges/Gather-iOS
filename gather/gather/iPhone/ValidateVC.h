@@ -3,13 +3,15 @@
 #import "GatherRequestDelegate.h"
 #import "SlideViewController.h"
 
-@class AppContext;
-@class GatherRequest;
+// TODO: Move to strings file
 static NSString * kCommunicatingText = @"COMMUNICATING...";
 static NSString * kEnterVerificationText =
     @"YOU WILL RECEIVE YOUR VERIFICATION CODE VIA TEXT IN A MOMENT. "
     @"YOU CAN ENTER IT BELOW.";
 static NSString * kSwipeLeftText = @"SWIPE LEFT TO FINISH";
+
+@class AppContext;
+@class GatherRequest;
 
 @interface ValidateVC : SlideViewController <GatherRequestDelegate> {
   IBOutlet UILabel * message_;

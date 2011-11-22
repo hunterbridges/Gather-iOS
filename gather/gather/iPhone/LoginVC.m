@@ -1,3 +1,4 @@
+#import "FontManager.h"
 #import "GatherAppDelegate.h"
 #import "GatherAppState.h"
 #import "GatherServer.h"
@@ -7,6 +8,7 @@
 #import "SessionData.h"
 #import "SlideNavigationController.h"
 #import "SlideViewController.h"
+#import "UIColor+Gather.h"
 #import "ValidateVC.h"
 
 @implementation LoginVC
@@ -38,11 +40,9 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  [phoneNumberLabel_ setFont:[UIFont fontWithName:@"UniversLTStd-UltraCn"
-                                             size:50]];
+  [phoneNumberLabel_ setFont:[ctx_.fontManager contentFontWithSize:50]];
 
-  [instructionsLabel_ setFont:[UIFont fontWithName:@"UniversLTStd-UltraCn"
-                                              size:20]];
+  [instructionsLabel_ setFont:[ctx_.fontManager contentFontWithSize:20]];
   
   grippies_ =
       [[GolfballGrippies alloc] initWithFrame:CGRectMake(64, 174, 192, 60)];
@@ -95,10 +95,7 @@
     if ([post length] == 10 &&
       [[[phoneNumberLabel_ text] substringToIndex:1] isEqualToString:@"("]) {
       instructionsLabel_.text = @"SWIPE LEFT TO LOG IN";
-      phoneNumberLabel_.textColor = [UIColor colorWithRed:1.0
-                                                    green:93.0/255.0
-                                                     blue:53.0/255.0
-                                                    alpha:1.0];
+      phoneNumberLabel_.textColor = [UIColor whenColor];
       
       [ctx_.server.sessionData setPhoneNumber:post];
       ctx_.appState = kGatherAppStateLoggedOutHasPhoneNumber;
@@ -115,7 +112,7 @@
       [new release];
     } else {
       instructionsLabel_.text = @"HELLO. WHAT IS YOUR CELL PHONE NUMBER?";
-      phoneNumberLabel_.textColor = [UIColor blackColor];
+      phoneNumberLabel_.textColor = [UIColor darkerTextColor];
         
       ctx_.appState = kGatherAppStateLoggedOutNeedsPhoneNumber;
       
