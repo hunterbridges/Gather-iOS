@@ -1,4 +1,5 @@
 #import <UIKit/UIKit.h>
+#import "GolfballGrippies.h"
 
 @class DoubleResponderScrollView;
 @class SlideViewController;
@@ -8,6 +9,7 @@
   int scrollStop_;
   int currentPage_;
   UIViewController *removePage_;
+  GolfballGrippies *grippies_;
 }
 
 @property (readonly) int currentPage;
@@ -27,5 +29,8 @@
 - (void)resetScrollStop;
 - (void)updateCurrentPageBasedOnScroll;
 - (void)setCurrentPage:(int)currentPage;
-- (void)setGrabberRect:(CGRect)grabberRect;
+- (void)enableGrippiesLeft;
+- (void)enableGrippiesRight;
+- (void)disableGrippies;
+- (void)makeGrippiesVisible:(BOOL)visible animated:(BOOL)animated;
 @end

@@ -5,6 +5,8 @@
 @synthesize cellPadding = cellPadding_;
 @synthesize cellSize = cellSize_;
 @synthesize enabled = enabled_;
+@synthesize scrollViewLeft = scrollViewLeft_;
+@synthesize scrollViewRight = scrollViewRight_;
 
 - (id)initWithFrame:(CGRect)frame {
   self = [super initWithFrame:frame];
@@ -19,6 +21,12 @@
     animationStep_ = -animationTrail_;
   }
   return self;
+}
+- (void)setScrollViewLeft:(UIScrollView *)scrollViewLeft{
+  scrollViewLeft_ = scrollViewLeft;  
+}
+- (void)setScrollViewRight:(UIScrollView *)scrollViewRight{
+  scrollViewRight_ = scrollViewRight;
 }
 
 - (void)setCurrentAnimation:(GolfballGrippiesAnimation)currentAnimation {
@@ -188,6 +196,13 @@
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
   [super touchesBegan:touches withEvent:event];
+  UITouch *touch = [touches anyObject];
+  // startTouchPosition is an instance variable
+  if (enabled_) {
+    startTouchPosition = [touch locationInView:self];
+    scrollViewLeftStart = scrollViewLeft_.contentOffset;
+    scrollViewRightStart = scrollViewRight_.contentOffset;
+  }
   if (enabled_) {
     [touches_ release];
     touches_ = [touches retain];
@@ -197,16 +212,56 @@
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
   [super touchesCancelled:touches withEvent:event];
+  if (enabled_) {
+    [scrollViewLeft_ setContentOffset:scrollViewLeftStart animated:YES];
+    [scrollViewRight_ setContentOffset:scrollViewRightStart animated:YES];
+  }
   [touches_ release];
   touches_ = nil;
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
   [super touchesEnded:touches withEvent:event];
+  UITouch *touch = [touches anyObject];
+  CGPoint currentTouchPosition = [touch locationInView:self];
   if (enabled_) {
-    [touches_ release];
-    touches_ = nil;
-    [self setNeedsDisplay];
+  float swipePercentage;
+  if (currentTouchPosition.x > startTouchPosition.x) {
+    //Swiping Right
+    swipePercentage = (currentTouchPosition.x - startTouchPosition.x) / 
+        (self.frame.size.width - startTouchPosition.x);
+
+    if ((swipePercentage>0.5)&&
+        ((scrollViewRightStart.x - scrollViewRight_.frame.size.width)>=0)) {
+      //full swipe
+      [scrollViewRight_ setContentOffset:
+        CGPointMake((scrollViewRightStart.x - scrollViewRight_.frame.size.width)
+        , 0) animated:YES];
+    } else {
+      //swipe cancelled
+      [scrollViewRight_ setContentOffset:scrollViewRightStart animated:YES];
+    }
+    
+  } else {
+    //Swiped Left
+    swipePercentage = (startTouchPosition.x - currentTouchPosition.x) / 
+        startTouchPosition.x;
+    if ((fabsf(swipePercentage)>0.5)&&
+        ((scrollViewLeftStart.x + scrollViewLeft_.frame.size.width)
+        < scrollViewLeft_.contentSize.width)) 
+    {
+      //full swipe
+      [scrollViewLeft_ setContentOffset:
+          CGPointMake((scrollViewLeftStart.x + scrollViewLeft_.frame.size.width)
+          , 0) animated:YES];
+    } else {
+      //swipe cancelled
+      [scrollViewLeft_ setContentOffset:scrollViewLeftStart animated:YES];
+    }
+  }
+  scrollViewLeftStart = scrollViewLeft_.contentOffset;
+  scrollViewRightStart = scrollViewRight_.contentOffset;
+  
   }
 }
 

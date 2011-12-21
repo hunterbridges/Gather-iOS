@@ -9,6 +9,7 @@ typedef enum {
 @interface GolfballGrippies : UIView {
   GolfballGrippiesAnimation currentAnimation_;
   
+  CGPoint startTouchPosition;
   CGFloat cellPadding_;
   CGFloat cellSize_;
   NSSet *touches_;
@@ -19,7 +20,8 @@ typedef enum {
   
   BOOL enabled_;
 }
-
+@property (nonatomic, assign) UIScrollView *scrollViewLeft;
+@property (nonatomic, assign) UIScrollView *scrollViewRight;
 @property (nonatomic, assign) GolfballGrippiesAnimation currentAnimation;
 @property (nonatomic, assign) CGFloat cellPadding;
 @property (nonatomic, assign) CGFloat cellSize;

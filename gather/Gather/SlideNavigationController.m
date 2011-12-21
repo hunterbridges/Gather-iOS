@@ -9,8 +9,8 @@
   self = [super init];
   if (self) {
     scrollView_ =
-        [[DoubleResponderScrollView alloc] initWithFrame:self.view.frame];
-    scrollView_.scrollEnabled = YES;
+        [[UIScrollView alloc] initWithFrame:self.view.frame];
+    scrollView_.scrollEnabled = NO;
     scrollView_.pagingEnabled = YES;
     scrollView_.directionalLockEnabled = YES;
     scrollView_.showsVerticalScrollIndicator = NO;
@@ -26,6 +26,16 @@
     navigationStack_ = [[NSMutableArray alloc] init];
     [self.view addSubview:scrollView_];
     currentPage_ = -1;
+    
+    grippies_ =
+        [[GolfballGrippies alloc] initWithFrame:CGRectMake(64, 174, 192, 60)];
+    grippies_.currentAnimation = kGolfballGrippiesAnimationNone;
+    grippies_.enabled = NO;
+    [grippies_ setScrollViewLeft:scrollView_];
+    [grippies_ setScrollViewRight:scrollView_];
+    [self.view addSubview:grippies_];
+    grippies_.alpha = 0.0;
+    grippies_.hidden = YES;
   }
   return self;
 }
@@ -46,10 +56,6 @@
 - (void)setScrollStop:(int)atPage {
   scrollStop_ = atPage;
   scrollView_.contentSize = CGSizeMake(((atPage * 320)+1), 480);
-}
-
-- (void)setGrabberRect:(CGRect)grabberRect {
-  scrollView_.grabberRect = grabberRect;
 }
 
 - (void)resetScrollStop {
@@ -86,6 +92,7 @@
 }
 
 - (void)resetWithPage:(SlideViewController *)newPage {
+  [self disableGrippies];
   if ([navigationStack_ count] == 0) {
     [self addNewPage:newPage];
   } else{
