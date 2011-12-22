@@ -80,7 +80,6 @@
 }
 
 - (void)drawRect:(CGRect)rect {
-  CGContextRef context = UIGraphicsGetCurrentContext();
   int lightUpColumn;
   for (int row = 0; row < self.rowCount; row++) {
     for (int col = 0; col < self.columnCount; col++) {
@@ -128,32 +127,26 @@
           break;
       }
       
-      CGContextSetFillColorWithColor(context,
-          [UIColor colorWithWhite:0.95 alpha:1].CGColor);
-      CGContextMoveToPoint(context, 0, 0);
-      CGContextFillEllipseInRect(context, 
-                                 CGRectMake(circleRect.origin.x,
-                                            circleRect.origin.y + 1,
-                                            circleRect.size.width,
-                                            circleRect.size.height));
+      // Light bottom
+      UIBezierPath *light = [UIBezierPath bezierPathWithOvalInRect:
+                             CGRectMake(circleRect.origin.x,
+                                        circleRect.origin.y + 1,
+                                        circleRect.size.width,
+                                        circleRect.size.height)];
+      [[UIColor colorWithWhite:0.95 alpha:1] setFill];
+      [light fill];
       
-      CGContextSetFillColorWithColor(context,
-          [UIColor colorWithWhite:0.65 alpha:1].CGColor);
-      CGContextMoveToPoint(context, 0, 0);
-      CGContextFillEllipseInRect(context, 
-                                 CGRectMake(circleRect.origin.x,
-                                            circleRect.origin.y,
-                                            circleRect.size.width,
-                                            circleRect.size.height));
+      UIBezierPath *shadow = [UIBezierPath bezierPathWithOvalInRect:circleRect];
+      [[UIColor colorWithWhite:0.65 alpha:1] setFill];
+      [shadow fill];
       
-      CGContextSetFillColorWithColor(context,
-          [UIColor colorWithWhite:shade alpha:1].CGColor);
-      CGContextMoveToPoint(context, 0, 0);
-      CGContextFillEllipseInRect(context, 
-                                 CGRectMake(circleRect.origin.x,
-                                            circleRect.origin.y + 1,
-                                            circleRect.size.width,
-                                            circleRect.size.height - 1));
+      UIBezierPath *fill = [UIBezierPath bezierPathWithOvalInRect:
+                            CGRectMake(circleRect.origin.x,
+                                       circleRect.origin.y + 1,
+                                       circleRect.size.width,
+                                       circleRect.size.height - 1)];
+      [[UIColor colorWithWhite:shade alpha:1] setFill];
+      [fill fill]; //lulz
       
       /*
       CGFloat colors [] = { 
