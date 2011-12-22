@@ -63,7 +63,7 @@
 }
 
 - (void)viewDidDisappearInSlideNavigation {
-  [self.slideNavigation setGrabberRect:CGRectZero];
+  //[self.slideNavigation setGrabberRect:CGRectZero];
 }
 
 - (void) viewDidDisappear:(BOOL)animated {
@@ -107,7 +107,8 @@
       grippies_.enabled = YES;
       grippies_.currentAnimation = kGolfballGrippiesAnimationLeft;
       
-      [self.slideNavigation setGrabberRect:grippies_.frame];
+      //[self.slideNavigation setGrabberRect:grippies_.frame];
+      [grippies_ setScrollViewLeft:slideNavigation_.scrollView];
       [self.slideNavigation addNewPage:new];
       [new release];
     } else {
@@ -121,7 +122,8 @@
       
       [ctx_.server.sessionData setPhoneNumber:nil];
       if (self.slideNavigation.pageCount > 1) {
-        [self.slideNavigation setGrabberRect:CGRectZero];
+        //[self.slideNavigation setGrabberRect:CGRectZero];
+        [grippies_ setScrollViewLeft:nil];
         [self.slideNavigation removeLastPage];
       }
     }

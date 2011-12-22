@@ -40,6 +40,50 @@
   return self;
 }
 
+- (void)enableGrippiesLeft {
+  grippies_.currentAnimation = kGolfballGrippiesAnimationLeft;
+  grippies_.enabled = YES;
+}
+
+- (void)enableGrippiesRight {
+  grippies_.currentAnimation = kGolfballGrippiesAnimationRight;
+  grippies_.enabled = YES;
+}
+
+- (void)disableGrippies {
+  grippies_.currentAnimation = kGolfballGrippiesAnimationNone;
+  grippies_.enabled = NO;
+  
+}
+
+- (void)switchGrippieVisibility{
+  grippies_.hidden = !grippies_.hidden;
+}
+
+- (void)makeGrippiesVisible:(BOOL)visible animated:(BOOL)animated{
+  if (grippies_.hidden == visible) {
+    if (animated == YES) {
+      
+      [UIView beginAnimations:nil context:NULL]; {
+        [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+        [UIView setAnimationDuration:0.5];
+        [UIView setAnimationDelegate:self];
+        if (grippies_.hidden == YES) {
+          grippies_.hidden = NO;
+        } else {
+          [UIView setAnimationDidStopSelector:
+           @selector(switchGrippieVisibility)];
+        }
+        [grippies_ setAlpha:(visible?1.0f:0.0f)];          
+      } [UIView commitAnimations];
+    } else {
+      grippies_.hidden = !visible;
+      grippies_.alpha = visible?1.0f:0.0f;
+    }
+    
+  }
+}
+
 - (int)currentPage {
   return currentPage_;
 }

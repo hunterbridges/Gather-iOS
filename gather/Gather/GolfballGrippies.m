@@ -267,10 +267,43 @@
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
   [super touchesMoved:touches withEvent:event];
+  
+  UITouch *touch = [touches anyObject];
+  CGPoint currentTouchPosition = [touch locationInView:self];
+  
   if (enabled_) {
-    [touches_ release];
-    touches_ = [touches retain];
-    [self setNeedsDisplay];
+    float swipePercentage;
+    if (currentTouchPosition.x > startTouchPosition.x) {
+      //Swiping Right
+      swipePercentage = (currentTouchPosition.x - startTouchPosition.x) / 
+      (self.frame.size.width - startTouchPosition.x);
+      float newContentOffset = scrollViewRightStart.x - 
+      (scrollViewRight_.frame.size.width * swipePercentage);
+      
+      if (newContentOffset < -100) {
+        [scrollViewRight_ setContentOffset:scrollViewRightStart animated:YES];
+        
+      }else if(swipePercentage <= 1.2){
+        [scrollViewRight_ setContentOffset:
+         CGPointMake(newContentOffset, 0) animated:NO];
+        
+      }
+    } else {
+      //Swiping Left
+      swipePercentage = (startTouchPosition.x - currentTouchPosition.x) / 
+      startTouchPosition.x;
+      float newContentOffset = (scrollViewLeft_.frame.size.width 
+                                * swipePercentage) + scrollViewLeftStart.x;
+      if (newContentOffset > 
+          ((scrollViewLeft_.contentSize.width-scrollViewLeft_.frame.size.width) 
+           + 100)) {
+        //Cancel
+        [scrollViewLeft_ setContentOffset:scrollViewLeftStart animated:YES];
+      } else if (swipePercentage <= 1.2){
+        [scrollViewLeft_ setContentOffset:
+        CGPointMake(newContentOffset, 0) animated:NO];
+      }
+    }
   }
 }
 

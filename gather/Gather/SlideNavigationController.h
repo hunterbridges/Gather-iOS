@@ -4,7 +4,7 @@
 @class DoubleResponderScrollView;
 @class SlideViewController;
 @interface SlideNavigationController : UIViewController <UIScrollViewDelegate> {
-  DoubleResponderScrollView *scrollView_;
+  UIScrollView *scrollView_;
   NSMutableArray *navigationStack_;
   int scrollStop_;
   int currentPage_;

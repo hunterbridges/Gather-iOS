@@ -14,6 +14,11 @@ typedef enum {
   CGFloat cellSize_;
   NSSet *touches_;
   
+  UIScrollView *scrollViewLeft_;
+  UIScrollView *scrollViewRight_;
+  CGPoint scrollViewLeftStart;
+  CGPoint scrollViewRightStart;
+  
   int animationStep_;
   int animationTrail_;
   NSTimer *animationTimer_;
