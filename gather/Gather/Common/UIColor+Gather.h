@@ -1,4 +1,5 @@
 #import <UIKit/UIKit.h>
+#import <GLKit/GLKit.h>
 
 @interface UIColor (Gather)
 // General colors
@@ -17,4 +18,19 @@
 + (UIColor *)whoColor;
 + (UIColor *)whereColor;
 + (UIColor *)whenColor;
+
+// Grippies colors
++ (UIColor *)grippiesHighlightColor;
++ (UIColor *)grippiesShadowColor;
++ (UIColor *)grippiesInactiveBodyColor;
++ (UIColor *)grippiesActiveBodyColor;
+
+- (CGColorSpaceModel) colorSpaceModel;
+- (BOOL) canProvideRGBComponents;
+- (CGFloat) red;
+- (CGFloat) green;
+- (CGFloat) blue;
+- (CGFloat) alpha;
+
+@property (readonly) GLKVector4 GLKVector4;
 @end

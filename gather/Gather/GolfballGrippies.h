@@ -1,4 +1,6 @@
 #import <UIKit/UIKit.h>
+#import <GLKit/GLKit.h>
+#import "GrippiesScene.h"
 
 typedef enum {
   kGolfballGrippiesAnimationNone = 0,
@@ -6,25 +8,30 @@ typedef enum {
   kGolfballGrippiesAnimationRight
 } GolfballGrippiesAnimation;
 
-@interface GolfballGrippies : UIView {
+@interface GolfballGrippies : UIView <GLKViewDelegate, GLKViewControllerDelegate> {
   GolfballGrippiesAnimation currentAnimation_;
   
-  CGPoint startTouchPosition;
+  CGPoint startTouchPosition_;
   CGFloat cellPadding_;
   CGFloat cellSize_;
   NSSet *touches_;
   
+  CGSize cachedOuterSize_;
+  
   UIScrollView *scrollViewLeft_;
   UIScrollView *scrollViewRight_;
-  CGPoint scrollViewLeftStart;
-  CGPoint scrollViewRightStart;
+  CGPoint scrollViewLeftStart_;
+  CGPoint scrollViewRightStart_;
   
   int animationStep_;
-  int animationTrail_;
-  NSTimer *animationTimer_;
+  
+  GLKView *glkView_;
+  GLKViewController *glkViewController_;
+  GrippiesScene *scene_;
   
   BOOL enabled_;
 }
+
 @property (nonatomic, assign) UIScrollView *scrollViewLeft;
 @property (nonatomic, assign) UIScrollView *scrollViewRight;
 @property (nonatomic, assign) GolfballGrippiesAnimation currentAnimation;

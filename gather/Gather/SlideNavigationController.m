@@ -4,6 +4,7 @@
 
 @implementation SlideNavigationController
 @synthesize scrollView = scrollView_;
+@synthesize grippies = grippies_;
 
 - (id)init {
   self = [super init];
@@ -16,7 +17,6 @@
     scrollView_.showsVerticalScrollIndicator = NO;
     scrollView_.showsHorizontalScrollIndicator = NO;
     scrollView_.delegate = self;
-    scrollView_.backgroundColor = [UIColor blackColor];
     scrollView_.autoresizesSubviews = YES;
     scrollView_.contentSize = CGSizeMake(320, 480);
     scrollView_.frame = CGRectMake(0, 0, 320, 480);

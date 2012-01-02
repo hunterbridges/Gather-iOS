@@ -28,7 +28,7 @@
   [phoneNumberField_ release];
   [instructionsLabel_ release];
   [phoneNumberLabel_ release];
-  [grippies_ release];
+  //[grippies_ release];
   [super dealloc];
 }
 
@@ -40,14 +40,16 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
+  self.view.backgroundColor = [UIColor lightBackgroundColor];
   [phoneNumberLabel_ setFont:[ctx_.fontManager contentFontWithSize:50]];
 
   [instructionsLabel_ setFont:[ctx_.fontManager contentFontWithSize:20]];
-  
+  /*
   grippies_ =
       [[GolfballGrippies alloc] initWithFrame:CGRectMake(64, 174, 192, 60)];
   grippies_.currentAnimation = kGolfballGrippiesAnimationNone;
   grippies_.enabled = NO;
+   */
   [self.view addSubview:grippies_];
 }
 
@@ -59,6 +61,8 @@
 
 - (void) viewDidAppearInSlideNavigation {
   [super viewDidAppearInSlideNavigation];
+  slideNavigation_.grippies.frame = CGRectMake(64, 174, 192, 60);
+  [slideNavigation_ makeGrippiesVisible:YES animated:YES];
   [phoneNumberField_ becomeFirstResponder];
 }
 
@@ -104,11 +108,10 @@
                                                      bundle:nil];
       new.ctx = ctx_;
       
-      grippies_.enabled = YES;
-      grippies_.currentAnimation = kGolfballGrippiesAnimationLeft;
+      slideNavigation_.grippies.enabled = YES;
+      slideNavigation_.grippies.currentAnimation = kGolfballGrippiesAnimationLeft;
       
       //[self.slideNavigation setGrabberRect:grippies_.frame];
-      [grippies_ setScrollViewLeft:slideNavigation_.scrollView];
       [self.slideNavigation addNewPage:new];
       [new release];
     } else {
@@ -117,8 +120,8 @@
         
       ctx_.appState = kGatherAppStateLoggedOutNeedsPhoneNumber;
       
-      grippies_.enabled = NO;
-      grippies_.currentAnimation = kGolfballGrippiesAnimationNone;
+      slideNavigation_.grippies.enabled = NO;
+      slideNavigation_.grippies.currentAnimation = kGolfballGrippiesAnimationNone;
       
       [ctx_.server.sessionData setPhoneNumber:nil];
       if (self.slideNavigation.pageCount > 1) {

@@ -16,6 +16,7 @@
 @property (readonly) int currentIndex;
 @property (readonly) int pageCount;
 @property (nonatomic, retain) UIScrollView *scrollView;
+@property (nonatomic, retain) GolfballGrippies *grippies;
 
 - (void)addNewPage:(SlideViewController *)newPage;
 - (void)resetWithPage:(SlideViewController *)newPage;

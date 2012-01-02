@@ -60,6 +60,19 @@
 		CA2A220314746E4F0014E35B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA2A220214746E4E0014E35B /* QuartzCore.framework */; };
 		CA2A22061474A4560014E35B /* UIColor+Gather.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2A22051474A4550014E35B /* UIColor+Gather.m */; };
 		CA2A22091474AB080014E35B /* StringUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2A22081474AB080014E35B /* StringUtils.m */; };
+		CAA3AC8814B1858B00B52AF5 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAA3AC8614B1858B00B52AF5 /* GLKit.framework */; };
+		CAA3AC8914B1858B00B52AF5 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAA3AC8714B1858B00B52AF5 /* OpenGLES.framework */; };
+		CAA3AC9C14B185B800B52AF5 /* EEShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA3AC8B14B185B800B52AF5 /* EEShape.m */; };
+		CAA3AC9D14B185B800B52AF5 /* EETriangle.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA3AC8D14B185B800B52AF5 /* EETriangle.m */; };
+		CAA3AC9E14B185B800B52AF5 /* EERectangle.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA3AC8F14B185B800B52AF5 /* EERectangle.m */; };
+		CAA3AC9F14B185B800B52AF5 /* EEEllipse.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA3AC9114B185B800B52AF5 /* EEEllipse.m */; };
+		CAA3ACA014B185B800B52AF5 /* EERegularPolygon.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA3AC9314B185B800B52AF5 /* EERegularPolygon.m */; };
+		CAA3ACA114B185B800B52AF5 /* EESprite.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA3AC9514B185B800B52AF5 /* EESprite.m */; };
+		CAA3ACA214B185B800B52AF5 /* EEScene.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA3AC9714B185B800B52AF5 /* EEScene.m */; };
+		CAA3ACA314B185B800B52AF5 /* EESceneController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA3AC9914B185B800B52AF5 /* EESceneController.m */; };
+		CAA3ACA414B185B800B52AF5 /* EEAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA3AC9B14B185B800B52AF5 /* EEAnimation.m */; };
+		CAA3ACAA14B18EEF00B52AF5 /* GrippiesScene.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA3ACA914B18EEF00B52AF5 /* GrippiesScene.m */; };
+		CAA3ACAD14B1915200B52AF5 /* GrippiesBlip.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA3ACAC14B1915200B52AF5 /* GrippiesBlip.m */; };
 		CACB13F6147459690044D73C /* FontManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CACB13F5147459690044D73C /* FontManager.m */; };
 /* End PBXBuildFile section */
 
@@ -159,6 +172,30 @@
 		CA2A22051474A4550014E35B /* UIColor+Gather.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+Gather.m"; path = "Common/UIColor+Gather.m"; sourceTree = "<group>"; };
 		CA2A22071474AB070014E35B /* StringUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StringUtils.h; path = Common/StringUtils.h; sourceTree = "<group>"; };
 		CA2A22081474AB080014E35B /* StringUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StringUtils.m; path = Common/StringUtils.m; sourceTree = "<group>"; };
+		CAA3AC8614B1858B00B52AF5 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		CAA3AC8714B1858B00B52AF5 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		CAA3AC8A14B185B800B52AF5 /* EEShape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EEShape.h; sourceTree = "<group>"; };
+		CAA3AC8B14B185B800B52AF5 /* EEShape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EEShape.m; sourceTree = "<group>"; };
+		CAA3AC8C14B185B800B52AF5 /* EETriangle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EETriangle.h; sourceTree = "<group>"; };
+		CAA3AC8D14B185B800B52AF5 /* EETriangle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EETriangle.m; sourceTree = "<group>"; };
+		CAA3AC8E14B185B800B52AF5 /* EERectangle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EERectangle.h; sourceTree = "<group>"; };
+		CAA3AC8F14B185B800B52AF5 /* EERectangle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EERectangle.m; sourceTree = "<group>"; };
+		CAA3AC9014B185B800B52AF5 /* EEEllipse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EEEllipse.h; sourceTree = "<group>"; };
+		CAA3AC9114B185B800B52AF5 /* EEEllipse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EEEllipse.m; sourceTree = "<group>"; };
+		CAA3AC9214B185B800B52AF5 /* EERegularPolygon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EERegularPolygon.h; sourceTree = "<group>"; };
+		CAA3AC9314B185B800B52AF5 /* EERegularPolygon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EERegularPolygon.m; sourceTree = "<group>"; };
+		CAA3AC9414B185B800B52AF5 /* EESprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EESprite.h; sourceTree = "<group>"; };
+		CAA3AC9514B185B800B52AF5 /* EESprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EESprite.m; sourceTree = "<group>"; };
+		CAA3AC9614B185B800B52AF5 /* EEScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EEScene.h; sourceTree = "<group>"; };
+		CAA3AC9714B185B800B52AF5 /* EEScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EEScene.m; sourceTree = "<group>"; };
+		CAA3AC9814B185B800B52AF5 /* EESceneController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EESceneController.h; sourceTree = "<group>"; };
+		CAA3AC9914B185B800B52AF5 /* EESceneController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EESceneController.m; sourceTree = "<group>"; };
+		CAA3AC9A14B185B800B52AF5 /* EEAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EEAnimation.h; sourceTree = "<group>"; };
+		CAA3AC9B14B185B800B52AF5 /* EEAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EEAnimation.m; sourceTree = "<group>"; };
+		CAA3ACA814B18EEF00B52AF5 /* GrippiesScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GrippiesScene.h; path = Common/GrippiesScene.h; sourceTree = "<group>"; };
+		CAA3ACA914B18EEF00B52AF5 /* GrippiesScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GrippiesScene.m; path = Common/GrippiesScene.m; sourceTree = "<group>"; };
+		CAA3ACAB14B1915200B52AF5 /* GrippiesBlip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GrippiesBlip.h; path = Common/GrippiesBlip.h; sourceTree = "<group>"; };
+		CAA3ACAC14B1915200B52AF5 /* GrippiesBlip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GrippiesBlip.m; path = Common/GrippiesBlip.m; sourceTree = "<group>"; };
 		CACB13F4147459690044D73C /* FontManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FontManager.h; path = Common/FontManager.h; sourceTree = "<group>"; };
 		CACB13F5147459690044D73C /* FontManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FontManager.m; path = Common/FontManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -168,6 +205,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CAA3AC8814B1858B00B52AF5 /* GLKit.framework in Frameworks */,
+				CAA3AC8914B1858B00B52AF5 /* OpenGLES.framework in Frameworks */,
 				CA2A220314746E4F0014E35B /* QuartzCore.framework in Frameworks */,
 				48869FBE13F4B8F9000B4812 /* AddressBook.framework in Frameworks */,
 				48869FBF13F4B8F9000B4812 /* AddressBookUI.framework in Frameworks */,
@@ -184,20 +223,11 @@
 		48AF6BDF13C8DEC60062B769 /* UI Elements */ = {
 			isa = PBXGroup;
 			children = (
-				48869FC013F4B976000B4812 /* PlusButtonView.h */,
-				48869FC113F4B976000B4812 /* PlusButtonView.m */,
-				4833FDC913F1673F00943A3D /* ArrowView.h */,
-				4833FDCA13F1673F00943A3D /* ArrowView.m */,
-				4833FDD313F16D7300943A3D /* ExView.h */,
-				4833FDD413F16D7300943A3D /* ExView.m */,
-				48AF6BEF13C8F6510062B769 /* SlideNavigationController.h */,
-				48AF6BF013C8F6510062B769 /* SlideNavigationController.m */,
-				C17DF6B0146F1BD300DF8C4B /* SlideViewController.h */,
-				C17DF6B1146F1BD400DF8C4B /* SlideViewController.m */,
+				CAA3ACA714B18EC300B52AF5 /* Utility */,
+				CAA3ACA614B18EAF00B52AF5 /* Slide Navigation */,
+				CAA3ACA514B18EA400B52AF5 /* Grippies */,
 				C1A20E9F1470D1E2001A8710 /* DoubleResponderScrollView.h */,
 				C1A20EA01470D1E2001A8710 /* DoubleResponderScrollView.m */,
-				C147532314704A21007A8375 /* GolfballGrippies.h */,
-				C147532414704A21007A8375 /* GolfballGrippies.m */,
 			);
 			name = "UI Elements";
 			sourceTree = "<group>";
@@ -238,6 +268,8 @@
 		C1C2C01613C8C48C00CD103D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CAA3AC8614B1858B00B52AF5 /* GLKit.framework */,
+				CAA3AC8714B1858B00B52AF5 /* OpenGLES.framework */,
 				CA2A220214746E4E0014E35B /* QuartzCore.framework */,
 				48869FBC13F4B8F9000B4812 /* AddressBook.framework */,
 				48869FBD13F4B8F9000B4812 /* AddressBookUI.framework */,
@@ -301,6 +333,7 @@
 		C1EB58E113CB6B3900F156DB /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				CAA3AC8414B1856500B52AF5 /* OpenGL 2D Engine */,
 				C17DF6AE146B1B0500DF8C4B /* Meta */,
 				C1EB58E313CB6B4300F156DB /* Server */,
 				C1EB5C5013CB9DF400F156DB /* GatherAppState.h */,
@@ -406,6 +439,68 @@
 				C1EB5C4913CB79F500F156DB /* PhoneNumberFormatter.m */,
 			);
 			name = PhoneNumberFormatter;
+			sourceTree = "<group>";
+		};
+		CAA3AC8414B1856500B52AF5 /* OpenGL 2D Engine */ = {
+			isa = PBXGroup;
+			children = (
+				CAA3AC8A14B185B800B52AF5 /* EEShape.h */,
+				CAA3AC8B14B185B800B52AF5 /* EEShape.m */,
+				CAA3AC8C14B185B800B52AF5 /* EETriangle.h */,
+				CAA3AC8D14B185B800B52AF5 /* EETriangle.m */,
+				CAA3AC8E14B185B800B52AF5 /* EERectangle.h */,
+				CAA3AC8F14B185B800B52AF5 /* EERectangle.m */,
+				CAA3AC9014B185B800B52AF5 /* EEEllipse.h */,
+				CAA3AC9114B185B800B52AF5 /* EEEllipse.m */,
+				CAA3AC9214B185B800B52AF5 /* EERegularPolygon.h */,
+				CAA3AC9314B185B800B52AF5 /* EERegularPolygon.m */,
+				CAA3AC9414B185B800B52AF5 /* EESprite.h */,
+				CAA3AC9514B185B800B52AF5 /* EESprite.m */,
+				CAA3AC9614B185B800B52AF5 /* EEScene.h */,
+				CAA3AC9714B185B800B52AF5 /* EEScene.m */,
+				CAA3AC9814B185B800B52AF5 /* EESceneController.h */,
+				CAA3AC9914B185B800B52AF5 /* EESceneController.m */,
+				CAA3AC9A14B185B800B52AF5 /* EEAnimation.h */,
+				CAA3AC9B14B185B800B52AF5 /* EEAnimation.m */,
+			);
+			name = "OpenGL 2D Engine";
+			sourceTree = "<group>";
+		};
+		CAA3ACA514B18EA400B52AF5 /* Grippies */ = {
+			isa = PBXGroup;
+			children = (
+				C147532314704A21007A8375 /* GolfballGrippies.h */,
+				C147532414704A21007A8375 /* GolfballGrippies.m */,
+				CAA3ACA814B18EEF00B52AF5 /* GrippiesScene.h */,
+				CAA3ACA914B18EEF00B52AF5 /* GrippiesScene.m */,
+				CAA3ACAB14B1915200B52AF5 /* GrippiesBlip.h */,
+				CAA3ACAC14B1915200B52AF5 /* GrippiesBlip.m */,
+			);
+			name = Grippies;
+			sourceTree = "<group>";
+		};
+		CAA3ACA614B18EAF00B52AF5 /* Slide Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				48AF6BEF13C8F6510062B769 /* SlideNavigationController.h */,
+				48AF6BF013C8F6510062B769 /* SlideNavigationController.m */,
+				C17DF6B0146F1BD300DF8C4B /* SlideViewController.h */,
+				C17DF6B1146F1BD400DF8C4B /* SlideViewController.m */,
+			);
+			name = "Slide Navigation";
+			sourceTree = "<group>";
+		};
+		CAA3ACA714B18EC300B52AF5 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				48869FC013F4B976000B4812 /* PlusButtonView.h */,
+				48869FC113F4B976000B4812 /* PlusButtonView.m */,
+				4833FDC913F1673F00943A3D /* ArrowView.h */,
+				4833FDCA13F1673F00943A3D /* ArrowView.m */,
+				4833FDD313F16D7300943A3D /* ExView.h */,
+				4833FDD413F16D7300943A3D /* ExView.m */,
+			);
+			name = Utility;
 			sourceTree = "<group>";
 		};
 		CACB13F11474550D0044D73C /* Creation Flow */ = {
@@ -537,6 +632,17 @@
 				CACB13F6147459690044D73C /* FontManager.m in Sources */,
 				CA2A22061474A4560014E35B /* UIColor+Gather.m in Sources */,
 				CA2A22091474AB080014E35B /* StringUtils.m in Sources */,
+				CAA3AC9C14B185B800B52AF5 /* EEShape.m in Sources */,
+				CAA3AC9D14B185B800B52AF5 /* EETriangle.m in Sources */,
+				CAA3AC9E14B185B800B52AF5 /* EERectangle.m in Sources */,
+				CAA3AC9F14B185B800B52AF5 /* EEEllipse.m in Sources */,
+				CAA3ACA014B185B800B52AF5 /* EERegularPolygon.m in Sources */,
+				CAA3ACA114B185B800B52AF5 /* EESprite.m in Sources */,
+				CAA3ACA214B185B800B52AF5 /* EEScene.m in Sources */,
+				CAA3ACA314B185B800B52AF5 /* EESceneController.m in Sources */,
+				CAA3ACA414B185B800B52AF5 /* EEAnimation.m in Sources */,
+				CAA3ACAA14B18EEF00B52AF5 /* GrippiesScene.m in Sources */,
+				CAA3ACAD14B1915200B52AF5 /* GrippiesBlip.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

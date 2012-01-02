@@ -23,8 +23,8 @@
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
   NSDictionary *appDefaults =
-  [NSDictionary dictionaryWithObject:@"http://dev.gather.mdor.co/"
-                              forKey:@"serverURL"];
+      [NSDictionary dictionaryWithObject:@"http://dev.gather.mdor.co/"
+                                  forKey:@"serverURL"];
   [defaults registerDefaults:appDefaults];
   [defaults synchronize];
   
@@ -36,7 +36,9 @@
   [fontManager release];
   
   slideView_ = [[SlideNavigationController alloc] init];
-  [self.window addSubview:slideView_.view];
+  slideView_.view.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1.0];
+  self.window.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1.0];
+  self.window.rootViewController = slideView_;
   
   [[NSNotificationCenter defaultCenter]
        addObserver:self
