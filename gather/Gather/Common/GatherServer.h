@@ -1,7 +1,5 @@
 #import <Foundation/Foundation.h>
 
-#import "SBJson.h"
-
 typedef enum {
   kGatherConfigObtainError = 0,
   kGatherConfigParseError

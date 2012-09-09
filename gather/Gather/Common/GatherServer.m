@@ -59,8 +59,8 @@
   NSURL *url = [self urlForMethod:@"tokens"];
   NSMutableDictionary *params = [NSMutableDictionary dictionary];
   [params setObject:phoneNumber forKey:@"phone_number"];
-  [params setObject:[sessionData_ deviceToken] forKey:@"device_udid"];
-  [params setObject:[sessionData_ deviceType] forKey:@"device_type"];
+  [params setObject:[sessionData_ deviceToken] forKey:@"device_token"];
+  [params setObject:[sessionData_ deviceType] forKey:@"device_kind"];
   
   GatherRequest *request =
       [[GatherRequest alloc] initWithGatherServer:self
@@ -93,7 +93,7 @@
 
 - (GatherRequest *)requestFavlistForCurrentUserWithSlug:(NSString *)slug
     withDelegate:(id<GatherRequestDelegate>)delegate {
-  NSString *method = [NSString stringWithFormat:@"users/me/favlists/%@", slug];
+  NSString *method = [NSString stringWithFormat:@"favlists/%@", slug];
   NSURL *url = [self urlForMethod:method];
   NSMutableDictionary *params = [NSMutableDictionary dictionary];
   params = [NSMutableDictionary dictionaryWithDictionary:
@@ -114,12 +114,12 @@
     withPhoneNumber:(NSString *)phoneNumber
     toFavlistWithSlug:(NSString *)slug
     withDelegate:(id<GatherRequestDelegate>)delegate {
-  NSString *method = [NSString stringWithFormat:@"users/me/favlists/%@/friends",
-                      slug];
+  NSString *method = [NSString stringWithFormat:@"friends"];
   NSURL *url = [self urlForMethod:method];
   NSMutableDictionary *params = [NSMutableDictionary dictionary];
   [params setObject:name forKey:@"name"];
   [params setObject:phoneNumber forKey:@"phone_number"];
+  [params setObject:slug forKey:@"favlist_slug"];
   params = [NSMutableDictionary dictionaryWithDictionary:
             [self signedParamsWithParams:params]];
   

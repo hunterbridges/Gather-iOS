@@ -5,7 +5,6 @@
 #import "GatherServer.h"
 #import "PhoneNumberFormatter.h"
 #import "PlusButtonView.h"
-#import "SBJson.h"
 #import "SplitListCell.h"
 #import "SplitListViewController.h"
 #import "UIColor+Gather.h"

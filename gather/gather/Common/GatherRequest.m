@@ -1,4 +1,3 @@
-#import "SBJson.h"
 #import "GatherRequest.h"
 #import "GatherRequestDelegate.h"
 #import "GatherServer.h"
@@ -134,11 +133,12 @@
     [delegate_ gatherRequest:self
            didSucceedWithData:buffer_];
   } else {
-    NSString *response = [[NSString alloc] initWithData:buffer_
-                                               encoding:NSUTF8StringEncoding];
+    NSError *error;
+    id result = [NSJSONSerialization JSONObjectWithData:buffer_
+                                                options:kNilOptions
+                                                  error:&error];
     [delegate_ gatherRequest:self
-          didSucceedWithJSON:[response JSONValue]];
-    [response release];
+          didSucceedWithJSON:result];
   }
   [server_ removeFromActiveRequests:self];
 }

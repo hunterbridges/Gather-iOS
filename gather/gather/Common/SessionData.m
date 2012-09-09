@@ -5,7 +5,6 @@
 #include <net/if_dl.h>
 
 #import "SessionData.h"
-#import "SBJson.h"
 
 @interface SessionData ()
 - (NSString *)macAddress;
